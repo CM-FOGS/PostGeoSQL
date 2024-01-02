@@ -1,0 +1,14 @@
+CREATE OR REPLACE FUNCTION ST_VoronoiDiagramsFromPolygons(
+   geom GEOMETRY,
+    n integer)
+RETURNS TABLE (id bigint, geom GEOMETRY) AS  
+$BODY$
+WITH
+tbla AS (SELECT row_number() over() AS id, ((ST_Dump(geom)).geom) geom FROM polygons),
+tblb AS (SELECT id, ST_ExteriorRing((ST_Dump(geom)).geom) geom FROM tbla GROUP BY id, geom),
+tblc AS (SELECT generate_series (0, n) as steps),
+tbld AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM tblc)) geom FROM tblb, tblc GROUP BY id, stp, tblc.steps, geom),
+tble AS (SELECT ST_MakeValid((ST_Dump(ST_VoronoiPolygons(ST_Collect(geom)))).geom) geom FROM tbld)
+    SELECT b.id, ST_Union(a.geom) geom FROM tble a JOIN tbla b ON ST_Intersects(a.geom, b.geom) GROUP BY id;
+$BODY$
+LANGUAGE SQL

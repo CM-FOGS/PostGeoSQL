@@ -1,0 +1,10 @@
+CREATE OR REPLACE FUNCTION ST_Linestopolygons(
+    geom GEOMETRY)
+RETURNS TABLE (geom GEOMETRY) AS
+$BODY$  
+WITH 
+noded AS (SELECT ST_Node(ST_Union(geom)) geom),
+polygons AS (SELECT ST_Union(geom) geom FROM (SELECT ST_Polygonize(geom) geom FROM noded) foo)
+SELECT geom FROM (SELECT (ST_Dump(geom)).geom FROM polygons) foo
+$BODY$
+LANGUAGE SQL

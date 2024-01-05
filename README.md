@@ -1,0 +1,1 @@
+The project is a set of vector geospatial functions designed to solve simple and complex geospatial problems in the PostgreSQL and PostGIS DBMS software environment, extending the capabilities of the PostgreSQL relational database by adding support for storing, indexing and querying geospatial data, as well as their visualization. PostgreSQL programming language.

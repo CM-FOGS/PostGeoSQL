@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromRiverLine(
+CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromRiverLine_v1(
     geom GEOMETRY,
     sl integer,
     radius_buffer float)
@@ -22,4 +22,4 @@ LANGUAGE SQL
 
 RUN 
 
-SELECT ST_PerpendicularTransectsFromRiverLine(geom,15,5) geom FROM <line_name_table>
+SELECT ST_PerpendicularTransectsFromRiverLine_v1(geom,15,5) geom FROM <line_name_table>

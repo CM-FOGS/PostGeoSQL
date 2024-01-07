@@ -35,3 +35,5 @@ tbl_lefth AS (WITH
     SELECT avg_length FROM tbl_rigth UNION SELECT avg_length FROM tbl_lefth  
 $BODY$
 LANGUAGE SQL
+
+SELECT ST_AvgLengthLineIRRegularPolygon(geom, 300) avglengt FROM <polygon_name_table>

@@ -13,3 +13,5 @@ tblf AS (SELECT ((ST_Dump(ST_DelaunayTriangles(ST_Collect(geom)))).geom) geom FR
 SELECT ST_Union(a.geom) geom FROM tblf a JOIN tble b ON ST_Intersects(a.geom, b.geom)
 $BODY$
 LANGUAGE SQL
+
+SELECT ST_PointsInStarPolygonFromDelaunayTriangles(geom) geom FROM (SELECT ST_Collect(geom) geom FROM pts) foo;

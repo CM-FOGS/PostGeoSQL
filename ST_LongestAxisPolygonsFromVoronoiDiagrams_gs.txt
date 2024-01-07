@@ -22,3 +22,5 @@ WITH
             SELECT ST_MakeLine(ST_Centroid(geom)) geom FROM tbll;
 $BODY$
 LANGUAGE SQL
+
+SELECT ST_LongestAxisPolygonsFromVoronoiDiagrams_gs(geom, 300) geom FROM <source_table>

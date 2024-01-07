@@ -12,6 +12,4 @@ WITH
 $BODY$
 LANGUAGE SQL
 
-RUN
-
 SELECT ST_VoronoiDiagramsFromLines(ST_Union(geom),100) geom FROM <line_name_table>

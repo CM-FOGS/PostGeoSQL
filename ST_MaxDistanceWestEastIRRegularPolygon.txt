@@ -33,3 +33,7 @@ tbl_lefth AS (WITH
             SELECT geom FROM tbl_rigth UNION SELECT geom FROM tbl_lefth
     $BODY$
 LANGUAGE SQL
+
+WITH 
+tbla AS (SELECT ST_MaxDistanceWestEastIRRegularPolygon(geom,300) geom FROM <table_name>) 
+SELECT ST_Distance(ST_StartPoint(geom)::geography, ST_EndPoint(geom)::geography) distance FROM tbla

@@ -15,3 +15,4 @@ WITH
 $BODY$
 LANGUAGE SQL
 
+SELECT ST_PerpendicularTransectsFromLine(geom, 15) geom FROM <name_line_table>

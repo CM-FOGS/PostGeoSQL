@@ -12,6 +12,4 @@ SELECT ST_PointsInStarPolygon(geom) geom FROM (SELECT ST_Union(geom) geom FROM
 $BODY$
 LANGUAGE SQL
 
-RUN
-
 SELECT ST_SnapPolygonToLine(a.geom, b.geom) geom FROM polygon a JOIN line b ON true

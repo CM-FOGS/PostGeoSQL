@@ -14,6 +14,4 @@ SELECT ST_Union(geom) geom FROM tblc WHERE tblc.case='even';
 $BODY$
 LANGUAGE SQL
 
-RUN
-
 SELECT ST_DashedLine_even(geom, 15) geom FROM <line_table_name>

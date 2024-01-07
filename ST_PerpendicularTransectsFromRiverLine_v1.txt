@@ -20,6 +20,4 @@ FROM generate_series(0, floor(d.len/sublen)::integer) AS t(i) WHERE (sublen * i)
 $BODY$
 LANGUAGE SQL
 
-RUN 
-
 SELECT ST_PerpendicularTransectsFromRiverLine_v1(geom,15,5) geom FROM <line_name_table>

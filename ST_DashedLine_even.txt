@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION ST_DashedLine_even(
     RETURNS TABLE (geom GEOMETRY) AS 
 $BODY$
 WITH
-geodata AS (SELECT row_number() over() AS id, geom FROM water_t),
+geodata AS (SELECT row_number() over() AS id, geom),
 linedivide AS (SELECT row_number() over() AS id, ST_LineSubstring(d.geom, substart, CASE WHEN subend > 1 THEN 1 ELSE subend END) geom
 FROM (SELECT id, geom, ST_Length(((geom)::geometry)) len, 15 sublen FROM geodata) AS d
 CROSS JOIN LATERAL (SELECT i, (sublen * i)/len AS substart, (sublen * (i+1))/len AS subend

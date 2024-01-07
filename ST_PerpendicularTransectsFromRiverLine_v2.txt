@@ -17,6 +17,4 @@ SELECT ST_Union(a.geom) geom FROM segments a JOIN geodata b ON ST_Intersects(a.g
 $BODY$
 LANGUAGE SQL
 
-Run:
-
 SELECT ST_PerpendicularTransectsFromRiverLine_v2(geom,15,5) geom FROM <line_name_table> 

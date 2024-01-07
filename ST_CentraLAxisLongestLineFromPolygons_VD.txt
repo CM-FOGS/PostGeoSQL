@@ -18,3 +18,5 @@ WITH
             SELECT ST_Intersection(a.geom, b.geom) geom FROM tblj a JOIN tbla b ON ST_Intersects(a.geom, b.geom);
 $BODY$
 LANGUAGE SQL
+
+SELECT ST_CentraLAxisLongestLineFromPolygons_VD(geom, 100) geom FROM <source_table>

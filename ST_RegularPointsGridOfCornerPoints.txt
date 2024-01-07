@@ -19,3 +19,5 @@ WHERE tblb.id IN (4) GROUP BY tblc.steps, geom),
       (SELECT ST_LineInterpolatePoint(geom, steps/(SELECT count(steps-1)::float-1 FROM tblg)) geom FROM tblg, tblf geom);
 $BODY$
 LANGUAGE SQL
+
+SELECT ST_RegularPointsGridOfCornerPoints(geom, 7, 5) geom FROM <name_poly_table>

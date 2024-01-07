@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ST_CentroidOnSurface(
+CREATE OR REPLACE FUNCTION ST_CentroidOnSurface_v1(
 geom GEOMETRY
 )
 RETURNS GEOMETRY AS
@@ -12,3 +12,5 @@ WITH
     SELECT (geom) geom FROM (SELECT * FROM tblc UNION SELECT * FROM tble) foo
 $BODY$
 LANGUAGE SQL
+
+SELECT ST_CentroidOnSurface(geom) geom FROM <name_table>

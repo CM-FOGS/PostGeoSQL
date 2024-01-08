@@ -4,7 +4,7 @@ n integer)
 RETURNS GEOMETRY AS
 $BODY$
 WITH
-    tbla AS (SELECT (ST_Dump(geom)).geom geom),
+    tbla AS (SELECT (ST_Dump($1)).geom),
     tblb AS (SELECT ST_Buffer(ST_Boundary(ST_OrientedEnvelope(geom)),0.00001) geom FROM tbla),
     tblc AS (SELECT (ST_Dump(ST_Difference(ST_Boundary(a.geom), b.geom))).geom geom FROM tbla a JOIN tblb b ON true),
     tbld AS (SELECT (ST_Dump(ST_Difference(ST_Buffer(ST_OrientedEnvelope(a.geom), -0.00001), b.geom))).geom geom FROM tbla a JOIN tbla b ON true),

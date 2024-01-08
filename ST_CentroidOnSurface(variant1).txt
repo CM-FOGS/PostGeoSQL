@@ -1,8 +1,8 @@
 CREATE OR REPLACE FUNCTION ST_CentroidOnSurface_v1(
-geom GEOMETRY)
+    geom GEOMETRY)
 RETURNS TABLE (geom GEOMETRY) AS
 $BODY$
-WITH
+    WITH
     tbla AS (SELECT (ST_Dump($1)).geom),
     tblb AS (SELECT ST_Centroid(geom) geom FROM tbla),
     tblc AS (SELECT (a.geom) geom FROM tblb a JOIN tbla b ON ST_Intersects(a.geom, b.geom)),

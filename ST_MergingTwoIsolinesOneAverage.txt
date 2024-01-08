@@ -1,10 +1,10 @@
 CREATE OR REPLACE FUNCTION ST_MergingTwoIsolinesOneAverage(
-geom GEOMETRY,
+    geom GEOMETRY,
     n integer)
-RETURNS GEOMETRY AS
+RETURNS TABLE (geom GEOMETRY) AS
 $BODY$
-WITH
-    tbla AS (SELECT (ST_Dump(geom)).geom geom),
+    WITH
+    tbla AS (SELECT (ST_Dump($1)).geom),
     tblb AS (SELECT generate_series (0, n) as steps),
     tblc AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM tblb)) geom FROM tbla, tblb GROUP BY tblb.steps, geom),
     tbld AS (SELECT ((ST_Dump(ST_VoronoiPolygons(ST_Collect(geom)))).geom) geom FROM tblc),

@@ -2,7 +2,8 @@ The project is a set of vector geospatial functions designed to solve simple and
 PostgreSQL programming language. 
 A brief description of how geo-functions work is generally published on the Q&A website at the following link - https://gis.stackexchange.com. 
 Geo-Function names labeled - experimental, work only in the construction - WITH Queries.
-links
+
+Links:
 1) ST_VoronoiDiagramsFromPolygons - https://gis.stackexchange.com/a/318112/120129;
 2) ST_VoronoiDiagramsFromLines - https://gis.stackexchange.com/a/348154/120129;
 3) ST_PerpendicularTransectsFromLine - https://gis.stackexchange.com/a/473663/120129;

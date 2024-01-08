@@ -4,7 +4,7 @@ geom GEOMETRY
 RETURNS GEOMETRY AS
 $BODY$
 WITH
-    tbla AS (SELECT (ST_Dump(geom)).geom geom),
+    tbla AS (SELECT (ST_Dump($1)).geom),
     tblb AS (SELECT ST_Centroid(geom) geom FROM tbla),
     tblc AS (SELECT (a.geom) geom FROM tblb a JOIN tbla b ON ST_Intersects(a.geom, b.geom)),
     tbld AS (SELECT ST_PointOnSurface(geom) geom FROM tbla),

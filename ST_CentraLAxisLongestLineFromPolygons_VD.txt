@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION ST_CentraLAxisLongestLineFromPolygons_VD(
 geom GEOMETRY,
 n integer)
-RETURNS GEOMETRY AS
+RETURNS TABLE (geom GEOMETRY) AS
 $BODY$
 WITH
     tbla AS (SELECT (ST_Dump($1)).geom),

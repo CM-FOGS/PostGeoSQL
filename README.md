@@ -2,3 +2,20 @@ The project is a set of vector geospatial functions designed to solve simple and
 PostgreSQL programming language. 
 A brief description of how geo-functions work is generally published on the Q&A website at the following link - https://gis.stackexchange.com. 
 Geo-Function names labeled - experimental, work only in the construction - WITH Queries.
+links
+1) ST_VoronoiDiagramsFromPolygons - https://gis.stackexchange.com/a/318112/120129;
+2) ST_VoronoiDiagramsFromLines - https://gis.stackexchange.com/a/348154/120129;
+3) ST_PerpendicularTransectsFromLine - https://gis.stackexchange.com/a/473663/120129;
+4) ST_PerpendicularTransectsFromRiverLine_v1, ST_PerpendicularTransectsFromRiverLine_v2 - https://gis.stackexchange.com/a/473783/120129;
+5) ST_RaysInGridPolygons - https://gis.stackexchange.com/a/443283/120129;
+6) ST_RegularPointsGridOfCornerPoints - https://gis.stackexchange.com/a/438068/120129;
+7) ST_Linestopolygons - https://gis.stackexchange.com/a/470364/120129;
+8) ST_PointsInStarPolygonFromDelaunayTriangles - https://gis.stackexchange.com/a/368121/120129;
+9) ST_LongestAxisPolygonsFromVoronoiDiagrams, ST_LongestAxisPolygonsFromVoronoiDiagrams_gs, ST_CentraLAxisLongestLineFromPolygons_VD - https://gis.stackexchange.com/a/347625/120129;
+10) ST_AvgLengthLineIRRegularPolygon - https://gis.stackexchange.com/a/418990/120129;
+11) ST_MaxDistanceWestEastIRRegularPolygon - https://gis.stackexchange.com/a/418891/120129;
+12) ST_SnapPolygonToLine - https://gis.stackexchange.com/a/408355/120129;
+13) ST_MergingTwoIsolinesOneAverage - https://gis.stackexchange.com/a/375525/120129;
+14) ST_BambooBuffer - https://gis.stackexchange.com/a/309043/120129;
+15) ST_CentroidOnSurface_v1,  ST_CentroidOnSurface_v2 - https://gis.stackexchange.com/a/372944/120129;
+16) ST_MaximumAreaInscribedRectangleInPolygon - https://gis.stackexchange.com/a/368504/120129;

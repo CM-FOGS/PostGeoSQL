@@ -1,10 +1,10 @@
 CREATE OR REPLACE FUNCTION ST_AvgLengthLineIRRegularPolygon(
-geom GEOMETRY,
-n integer)
+    geom GEOMETRY,
+    n integer)
 RETURNS double precision AS
 $BODY$
-WITH
-tbl_rigth AS (WITH 
+    WITH
+    tbl_rigth AS (WITH 
     tbla AS (SELECT (ST_Dump($1)).geom),
     tblb AS (SELECT ST_LongestLine(a.geom, b.geom) geom FROM tbla a JOIN tbla b ON ST_Intersects(a.geom, b.geom)), 
     tblc AS (SELECT geom, ST_Length(geography(geom)) lenght FROM tblb),
@@ -18,7 +18,7 @@ tbl_rigth AS (WITH
     tblj AS (SELECT ST_MakeLine(geom1, geom2) geom FROM tblh JOIN tbli ON true AND stp1=stp2),
     tblk AS (SELECT (ST_Dump(ST_Intersection(a.geom, b.geom))).geom geom, count(*) cnt FROM tblj a JOIN tbla b ON true GROUP BY a.geom, b.geom)
      (SELECT ST_Length(geography(ST_Union(geom)))/SUM(cnt) avg_length FROM tblk)),
-tbl_lefth AS (WITH 
+    tbl_lefth AS (WITH 
     tbla AS (SELECT (ST_Dump($1)).geom),
     tblb AS (SELECT ST_LongestLine(a.geom, b.geom) geom FROM tbla a JOIN tbla b ON ST_Intersects(a.geom, b.geom)), 
     tblc AS (SELECT geom, ST_Length(geography(geom)) lenght FROM tblb),

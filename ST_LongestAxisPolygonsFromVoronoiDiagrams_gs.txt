@@ -3,8 +3,8 @@ CREATE OR REPLACE FUNCTION ST_LongestAxisPolygonsFromVoronoiDiagrams_gs(
     n integer)
 RETURNS GEOMETRY AS
 $BODY$
-WITH
-    tbla AS (SELECT (ST_Dump(geom)).geom),
+    WITH
+    tbla AS (SELECT (ST_Dump($1)).geom),
     tblb AS (WITH btbl AS (SELECT (ST_ExteriorRing(((ST_Dump(geom)).geom))) geom),
             intervals AS (SELECT generate_series (0, n) as steps)
             SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM intervals)) geom FROM btbl, intervals GROUP BY intervals.steps, geom),

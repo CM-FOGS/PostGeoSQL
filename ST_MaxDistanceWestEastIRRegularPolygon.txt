@@ -1,10 +1,10 @@
 CREATE OR REPLACE FUNCTION ST_MaxDistanceWestEastIRRegularPolygon(
-geom GEOMETRY,
-n integer)
+    geom GEOMETRY,
+    n integer)
 RETURNS GEOMETRY AS
 $BODY$
-WITH
-tbl_rigth AS (WITH 
+    WITH
+    tbl_rigth AS (WITH 
     tbla AS (SELECT (ST_Dump(geom)).geom geom),
     tblb AS (SELECT ST_Boundary(ST_Envelope(geom)) geom FROM tbla),
     tblc AS (SELECT line1, line2 FROM (SELECT ST_MakeLine(ST_PointN(geom,1), ST_PointN(geom,2)) line1, 
@@ -17,7 +17,7 @@ tbl_rigth AS (WITH
     tbli AS (SELECT ST_Length(geography(geom)) lenght, geom FROM tblh),
     tblj AS (SELECT geom, MAX(lenght) max_length, degrees(ST_Azimuth(ST_StartPoint(geom), ST_EndPoint(geom))) azimuth FROM tbli GROUP BY geom ORDER BY max_length DESC LIMIT 1)
             SELECT geom FROM tblj WHERE azimuth IN (90,-90)),
-tbl_lefth AS (WITH 
+    tbl_lefth AS (WITH 
     tbla AS (SELECT (ST_Dump(geom)).geom geom),
     tblb AS (SELECT ST_Boundary(ST_Envelope(geom)) geom FROM tbla),
     tblc AS (SELECT line1, line2 FROM (SELECT ST_MakeLine(ST_PointN(geom,2), ST_PointN(geom,3)) line1, 
@@ -30,7 +30,7 @@ tbl_lefth AS (WITH
     tbli AS (SELECT ST_Length(geography(geom)) lenght, geom FROM tblh),
     tblj AS (SELECT geom, MAX(lenght) max_length, degrees(ST_Azimuth(ST_StartPoint(geom), ST_EndPoint(geom))) azimuth FROM tbli GROUP BY geom ORDER BY max_length DESC LIMIT 1)
             SELECT geom FROM tblj WHERE azimuth IN (90,-90))
-            SELECT geom FROM tbl_rigth UNION SELECT geom FROM tbl_lefth
+            SELECT geom FROM tbl_rigth UNION SELECT geom FROM tbl_lefth;
     $BODY$
 LANGUAGE SQL
 

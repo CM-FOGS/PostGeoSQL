@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION ST_VoronoiDiagramsFromLines(
      n integer)
 RETURNS TABLE (geom GEOMETRY) AS  
 $BODY$  
-WITH
+     WITH
     tbla AS (SELECT (ST_Dump($1)).geom),
     intervals AS (SELECT generate_series (0, n) steps),
     lineinterpnt AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM intervals)) geom FROM tbla, intervals GROUP BY intervals.steps, geom),
@@ -12,4 +12,4 @@ WITH
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_VoronoiDiagramsFromLines(ST_Union(geom),100) geom FROM <line_name_table>
+SELECT ST_VoronoiDiagramsFromLines(ST_Union(geom), 100) geom FROM <line_name_table>

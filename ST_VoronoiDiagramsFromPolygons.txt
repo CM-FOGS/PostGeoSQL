@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION ST_VoronoiDiagramsFromPolygons(
    geom GEOMETRY,
-    n integer)
+   n integer)
 RETURNS TABLE (geom GEOMETRY) AS  
 $BODY$
    WITH

@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION ST_SmoothedToothedPolygonExternal(
 RETURNS GEOMETRY AS
 $BODY$
      WITH
-     tbla AS (SELECT (ST_Dump(geom)).geom),
+     tbla AS (SELECT (ST_Dump($1)).geom),
      tblb AS (SELECT ST_Boundary(geom) geom FROM tbla),
      tblc AS (SELECT (ST_DumpPoints(geom)).geom FROM tblb),
      tbld AS (SELECT ST_Buffer(ST_Buffer(geom, radius),-radius) geom FROM tbla),

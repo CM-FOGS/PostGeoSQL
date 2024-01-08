@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION ST_LongestAxisPolygonsFromVoronoiDiagrams(
     geom GEOMETRY)
-RETURNS GEOMETRY AS
+RETURNS TABLE (geom GEOMETRY) AS
 $BODY$
 WITH
 tbla AS (SELECT (ST_Dump($1)).geom),

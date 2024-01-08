@@ -20,3 +20,4 @@ Links on the Q&A website:
 14) ST_BambooBuffer - https://gis.stackexchange.com/a/309043/120129;
 15) ST_CentroidOnSurface_v1,  ST_CentroidOnSurface_v2 - https://gis.stackexchange.com/a/372944/120129;
 16) ST_MaximumAreaInscribedRectangleInPolygon - https://gis.stackexchange.com/a/368504/120129;
+17) ST_CentraLAxisLongestLineFromVoronoiDiagrams - https://gis.stackexchange.com/a/411894/120129;

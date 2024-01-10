@@ -22,3 +22,4 @@ Links on the Q&A website:
 16) ST_MaximumAreaInscribedRectangleInPolygon - https://gis.stackexchange.com/a/368504/120129;
 17) ST_CentraLAxisLongestLineFromVoronoiDiagrams - https://gis.stackexchange.com/a/411894/120129;
 18) ST_SmoothingPolygonsNotchesInternalVertices - https://gis.stackexchange.com/a/467857/120129;
+19) ST_SamplingLargePolygonsByDoubleBufferization, ST_SamplingSmallPolygonsByDoubleBufferization - https://gis.stackexchange.com/a/316212/120129;

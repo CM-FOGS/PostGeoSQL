@@ -1,0 +1,14 @@
+CREATE OR REPLACE FUNCTION ST_SamplingLargePolygonsByDoubleBufferization(
+    geom GEOMETRY,
+    radius_buffer float)
+RETURNS TABLE (geom GEOMETRY) AS
+$BODY$
+WITH
+   geodata AS (SELECT (ST_Dump($1)).geom),
+   eraser AS (SELECT ST_Buffer((ST_Dump((ST_Buffer(geom,-radius_buffer)))).geom, radius_buffer) geom FROM geodata),
+   pntsurface AS (SELECT ST_PointOnSurface(geom) geom FROM eraser)		
+   SELECT ST_Collect(a.geom) geom FROM geodata a WHERE EXISTS (SELECT 1 FROM pntsurface b WHERE ST_Intersects(a.geom, b.geom));
+$BODY$
+LANGUAGE SQL;
+
+SELECT ST_SamplingLargePolygonsByDoubleBufferization(ST_Collect(geom), 0.1) geom FROM

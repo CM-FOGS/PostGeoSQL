@@ -24,3 +24,4 @@ Links on the Q&A website:
 18) ST_SmoothingPolygonsNotchesInternalVertices - https://gis.stackexchange.com/a/467857/120129;
 19) ST_SamplingLargePolygonsByDoubleBufferization, ST_SamplingSmallPolygonsByDoubleBufferization - https://gis.stackexchange.com/a/316212/120129;
 20) ST_CarvesPolygons - https://gis.stackexchange.com/a/333562/120129; https://gis.stackexchange.com/a/302470/120129;
+21) ST_SmoothedToothedPolygonInternal - https://gis.stackexchange.com/a/429894/120129;

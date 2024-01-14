@@ -5,7 +5,7 @@ $BODY$
 	WITH
 	    tbla AS (SELECT (ST_Dump($1)).geom),
 	    tblb AS (SELECT ST_ExteriorRing(ST_Union(geom)) geom FROM tbla)
-	    SELECT (a.geom) geom FROM tbla a JOIN tblb b ON ST_Intersects(a.geom, b.geom);
+	    SELECT ST_Collect(a.geom) geom FROM tbla a JOIN tblb b ON ST_Intersects(a.geom, b.geom);
 $BODY$
 LANGUAGE SQL
 

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ST_MultyRingsBuffer(
+CREATE OR REPLACE FUNCTION ST_MultyRingsBuffers(
     geom GEOMETRY,
     radius_buffer float,
     n bigint)
@@ -12,4 +12,4 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_MultyRingsBuffer(ST_Collect(geom), 10, 10) geom FROM <'Point','Linestring','Polygon' name_table>
+SELECT ST_MultyRingsBuffers(ST_Collect(geom), 10, 10) geom FROM <'Point','Linestring','Polygon' name_table>

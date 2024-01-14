@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ST_ExtractExternalRectanglesInGrid_v2(
+CREATE OR REPLACE FUNCTION ST_ExtractionExternalGridCellsByDoubleBufferization(
     geom GEOMETRY,
     radius_buffer float)
 RETURNS TABLE (geom GEOMETRY) AS 
@@ -6,9 +6,9 @@ $BODY$
     WITH
         tbla AS (SELECT (ST_Dump($1)).geom),
         tblb AS (SELECT ST_ExteriorRing(ST_Buffer((ST_Buffer(ST_Union(geom),-radius_buffer)), radius_buffer)) geom FROM tbla)
-        SELECT (a.geom) geom FROM tbla a JOIN tblb b ON ST_Intersects(a.geom, b.geom);
+        SELECT ST_Collect(a.geom) geom FROM tbla a JOIN tblb b ON ST_Intersects(a.geom, b.geom);
 $BODY$
 LANGUAGE SQL
 RUN
 
-SELECT ST_ExtractExternalRectanglesInGrid_v2(ST_Collect(geom), 0.001) geom FROM <polygon_grid_table>
+SELECT ST_ExtractionExternalGridCellsByDoubleBufferization(ST_Collect(geom), 0.001) geom FROM <polygon_grid_table>

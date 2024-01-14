@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION ST_DashedDottedLine_even(
     geom GEOMETRY,
     sl integer,
     n integer)
-    RETURNS TABLE (geom GEOMETRY) AS 
+RETURNS TABLE (geom GEOMETRY) AS 
 $BODY$
     WITH
         geodata AS (SELECT row_number() over() AS id, geom),

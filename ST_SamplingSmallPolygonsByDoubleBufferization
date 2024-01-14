@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION ST_SamplingSmallPolygonsByDoubleBufferization(
-geom GEOMETRY,
-radius_buffer float)
+	geom GEOMETRY,
+	radius_buffer float)
 RETURNS TABLE (geom GEOMETRY) AS 
 $BODY$
       WITH
@@ -8,7 +8,7 @@ $BODY$
           eraser AS (SELECT ST_Buffer((ST_Dump((ST_Buffer(geom,-radius_buffer)))).geom, radius_buffer) geom FROM in_geodata),
           pntsurface AS (SELECT ST_PointOnSurface(geom) geom FROM eraser),
 	  out_geodata AS (SELECT ST_Collect(a.geom) geom FROM in_geodata a WHERE NOT EXISTS (SELECT 1 FROM pntsurface b WHERE ST_Intersects(a.geom, b.geom)))
-	  SELECT geom FROM out_geodata WHERE geom <> '".$empty."';
+	  SELECT ST_Collect(geom) geom FROM out_geodata WHERE geom <> '".$empty."';
 $BODY$
 LANGUAGE SQL;
 

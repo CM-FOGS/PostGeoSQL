@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ST_ExtractExternalRectanglesInGrid(
+CREATE OR REPLACE FUNCTION ST_ExtractionExternalGridCells(
     geom GEOMETRY)
 RETURNS TABLE (geom GEOMETRY) AS 
 $BODY$ 
@@ -9,4 +9,4 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_ExtractExternalRectanglesInGrid(ST_Collect(geom)) geom FROM <polygon_grid_table>
+SELECT ST_ExtractionExternalGridCells(ST_Collect(geom)) geom FROM <polygon_grid_table>

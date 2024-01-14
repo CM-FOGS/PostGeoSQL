@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION ST_SmoothedToothedPolygonInternal(
-geom GEOMETRY,
-radius float)
+     geom GEOMETRY,
+     radius float)
 RETURNS GEOMETRY AS
 $BODY$
      WITH

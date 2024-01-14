@@ -16,7 +16,7 @@ $BODY$
         tbli AS (SELECT steps AS stp2, ST_LineInterpolatePoint(line2, steps/(SELECT count(steps)::float-1 FROM tblg)) geom2 FROM tblf, tblg GROUP BY tblg.steps, geom2),
         tblj AS (SELECT ST_MakeLine(geom1, geom2) geom FROM tblh JOIN tbli ON true AND stp1=stp2),
         tblk AS (SELECT (ST_Dump(ST_Intersection(a.geom, b.geom))).geom geom, count(*) cnt FROM tblj a JOIN tbla b ON true GROUP BY a.geom, b.geom)
-     (SELECT ST_Length(geography(ST_Union(geom)))/SUM(cnt) avg_length FROM tblk)),
+        (SELECT ST_Length(geography(ST_Union(geom)))/SUM(cnt) avg_length FROM tblk)),
         tbl_lefth AS (WITH 
         tbla AS (SELECT (ST_Dump($1)).geom),
         tblb AS (SELECT ST_LongestLine(a.geom, b.geom) geom FROM tbla a JOIN tbla b ON ST_Intersects(a.geom, b.geom)), 

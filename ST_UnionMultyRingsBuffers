@@ -7,7 +7,7 @@ $BODY$
     WITH
         tbla AS  (SELECT (ST_Dump($1)).geom),
         tblb AS (SELECT ST_Union(ST_Buffer(geom, radius_buffer*i)) geom FROM tbla a CROSS JOIN LATERAL generate_series (1, n) AS step(i) GROUP BY i)
-		SELECT ST_Polygonize(geom) geom FROM tblb;
+	SELECT ST_Polygonize(geom) geom FROM tblb;
 $BODY$
 LANGUAGE SQL
 

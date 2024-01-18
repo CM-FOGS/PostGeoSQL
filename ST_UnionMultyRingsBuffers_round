@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ST_UnionMultyRingsBuffers(
+CREATE OR REPLACE FUNCTION ST_UnionMultyRingsBuffers_round(
     geom GEOMETRY,
     radius_buffer float,
     n bigint)
@@ -11,4 +11,4 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_UnionMultyRingsBuffers(ST_Collect(geom), 15, 10) geom FROM <name_table>
+SELECT ST_UnionMultyRingsBuffers_round(ST_Collect(geom), 15, 10) geom FROM <name_table>

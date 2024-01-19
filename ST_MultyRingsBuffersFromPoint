@@ -9,7 +9,7 @@ $BODY$
         SELECT ST_MakePolygon(ST_MakeLine(ARRAY_AGG(ST_MakePoint(ST_X(geom) + radius * COSD(90 + i * 360/edge), 
               ST_Y(geom) + radius * SIND(90 + i * 360/edge))))) geom FROM generate_series(0, edge) AS s(i);
 $BODY$
-LANGUAGE SQL;
+LANGUAGE SQL
 
 SELECT ST_RegularPolygonInscribedInCircle(geom, 1, 5) geom FROM point(s)
 

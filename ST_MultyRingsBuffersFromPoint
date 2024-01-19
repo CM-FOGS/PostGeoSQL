@@ -11,7 +11,7 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_RegularPolygonInscribedInCircle(geom, 1, 5) geom FROM point(s)
+SELECT ST_RegularPolygonInscribedInCircle(geom, 1, 5) geom FROM <POINT_name_table>
 
 CREATE OR REPLACE FUNCTION ST_MultyRingsBuffersFromPoint(
     geom GEOMETRY,
@@ -27,5 +27,5 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_MultyRingsBuffersFromPoint(ST_Collect(geom), 1, 10, 100) geom FROM point(s)
+SELECT ST_MultyRingsBuffersFromPoint(ST_Collect(geom), 1, 10, 100) geom FROM <POINT_name_table>
 

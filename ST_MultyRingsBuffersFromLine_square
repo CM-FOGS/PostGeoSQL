@@ -11,4 +11,4 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_MultyRingsBuffersFromLine_right(ST_Collect(geom), 1, 10) geom FROM <LINE_name_table>
+SELECT ST_MultyRingsBuffersFromLine_square(ST_Collect(geom), 1, 10) geom FROM <LINE_name_table>

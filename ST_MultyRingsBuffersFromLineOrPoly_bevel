@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ST_MultyRingsBuffersFromLineO_bevel(
+CREATE OR REPLACE FUNCTION ST_MultyRingsBuffersFromLineOrPoly_bevel(
     geom GEOMETRY,
     radius_buffer float,
     n bigint)
@@ -11,4 +11,4 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_MultyRingsBuffersFromLineORPoly_bevel(ST_Collect(geom), 1, 10) geom FROM <LINE_name_table>
+SELECT ST_MultyRingsBuffersFromLineOrPoly_bevel(ST_Collect(geom), 1, 10) geom FROM <LINE/POLY_name_table>

@@ -1,0 +1,17 @@
+CREATE OR REPLACE FUNCTION ST_ArchimedianSpiralCounterClockwiseEast(
+    centerX double precision,
+    centerY double precision,
+    radius float,
+    circleSegs integer,
+    rings integer)
+RETURNS GEOMETRY AS
+$BODY$
+    WITH 
+        spiralStep AS (SELECT i FROM generate_series(0, rings * circleSegs) t(i))
+        (SELECT ST_MakeLine(ST_SetSrid(ST_MakePoint(centerX + (radius/circleSegs) * i * cos(i * (2 * pi()/circleSegs)),
+         centerY + (radius/circleSegs) * i * sin(i * (2 * pi()/circleSegs))),4326)) AS geom FROM spiralStep);
+$BODY$
+LANGUAGE SQL;
+
+SELECT ST_ArchimedianSpiralCounterClockwiseEast(geom, 0.003, 75, 3) geom FROM <POINT_name_table>
+

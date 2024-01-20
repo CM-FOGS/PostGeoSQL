@@ -13,6 +13,8 @@ LANGUAGE SQL
 
 SELECT ST_RegularPolygonInscribedInCircle(geom, 1, 5) geom FROM <POINT_name_table>
 
+© Martin Davis https://github.com/dr-jts 
+
 CREATE OR REPLACE FUNCTION ST_MultyRingsBuffersFromPoint(
     geom GEOMETRY,
     radius float,
@@ -28,4 +30,3 @@ $BODY$
 LANGUAGE SQL
 
 SELECT ST_MultyRingsBuffersFromPoint(ST_Collect(geom), 1, 10, 100) geom FROM <POINT_name_table>
-

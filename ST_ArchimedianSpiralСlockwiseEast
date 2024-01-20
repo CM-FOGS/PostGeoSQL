@@ -1,9 +1,9 @@
 CREATE OR REPLACE FUNCTION ST_ArchimedianSpiralСlockwiseEast(
-  centerX double precision,
-  centerY double precision,
-  radius float,
-  circleSegs integer,
-  rings integer)
+    centerX double precision,
+    centerY double precision,
+    radius float,
+    circleSegs integer,
+    rings integer)
 RETURNS GEOMETRY AS
 $BODY$
     WITH 

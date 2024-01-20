@@ -25,4 +25,4 @@ LANGUAGE SQL;
 
 SELECT ST_VariableBufferFromLine( 'LINESTRING( 0 0, 100 0)' , 1, 10 );
 
-© Martin Davies https://github.com/dr-jts
+© Martin Davis https://github.com/dr-jts 

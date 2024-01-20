@@ -14,7 +14,7 @@ LANGUAGE SQL
 
 SELECT ST_PointsInStarPolygon(ST_Collect(geom)) geom FROM <POINT_name_table>
 
-
+© Martin Davis https://github.com/dr-jts 
 
 
 CREATE OR REPLACE FUNCTION ST_SnapPolygonToLine(

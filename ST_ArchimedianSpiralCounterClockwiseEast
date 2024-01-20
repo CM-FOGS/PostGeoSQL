@@ -15,3 +15,5 @@ LANGUAGE SQL;
 
 SELECT ST_ArchimedianSpiralCounterClockwiseEast(geom, 0.003, 75, 3) geom FROM <POINT_name_table>
 
+© Martin Davis https://github.com/dr-jts 
+

@@ -8,8 +8,8 @@ RETURNS GEOMETRY AS
 $BODY$
     WITH 
         spiralStep AS (SELECT i FROM generate_series(0, rings * circleSegs) t(i))
-        (SELECT ST_MakeLine(ST_SetSrid(ST_MakePoint(centerX + (radius/circleSegs) * i * -cos(i * (2 * pi()/circleSegs)),
-        centerY + (radius/circleSegs) * i * -sin(i * (2 * pi()/circleSegs))),4326)) AS geom FROM spiralStep);
+        (SELECT ST_MakeLine(ST_MakePoint(centerX + (radius/circleSegs) * i * -cos(i * (2 * pi()/circleSegs)),
+        centerY + (radius/circleSegs) * i * -sin(i * (2 * pi()/circleSegs)))) AS geom FROM spiralStep);
 $BODY$
 LANGUAGE SQL
 

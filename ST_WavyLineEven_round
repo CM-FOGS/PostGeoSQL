@@ -1,4 +1,3 @@
-
 CREATE OR REPLACE FUNCTION ST_WavyLineEven_round(
     geom GEOMETRY,
     sl integer,

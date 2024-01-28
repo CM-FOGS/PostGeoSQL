@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION ST_InterpolateNormalsFromLine(
     geom geometry,
     secLen float,
     transectLen float,
-	  fraction float8)
+    fraction float8)
     RETURNS TABLE (geom geometry) AS 
 $BODY$
     WITH

@@ -54,4 +54,5 @@ LANGUAGE SQL
 
 SELECT ST_MaximumAreaInscribedRectangleInPolygon(geom, 1, 0.1) geom FROM <name_table>
 
-*This is an experimental function. This function is intended for working with trapezoidal polygons, right-angled triangles, even simple n-multigons (6 or more angles), circles. In the resulting table there will be no values of records describing simple shapes like square and rectangle, if they are present in the source table!*
+*This is an experimental function. This function is intended for working with trapezoidal polygons, right-angled triangles, even simple n-multigons (6 or more angles), circles. In the resulting table there will be no values of records describing simple shapes like square and rectangle, if they are present in the source table!
+This feature has another cryptic name ST_Mongoose (Herpestes)*

@@ -1,3 +1,8 @@
+DROP FUNCTION IF EXISTS ST_UnionMultyRingsBuffersFromLineOrPoly_mitre1(
+    geom GEOMETRY,
+    radius_buffer float,
+    n bigint)
+
 CREATE OR REPLACE FUNCTION ST_UnionMultyRingsBuffersFromLineOrPoly_mitre1(
     geom GEOMETRY,
     radius_buffer float,

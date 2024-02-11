@@ -1,3 +1,7 @@
+DROP FUNCTION IF EXISTS ST_VoronoiDiagramsFromLines(
+     geom GEOMETRY, 
+     n integer)
+
 CREATE OR REPLACE FUNCTION ST_VoronoiDiagramsFromLines(
      geom GEOMETRY, 
      n integer)

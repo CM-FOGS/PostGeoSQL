@@ -1,3 +1,7 @@
+DROP FUNCTION IF EXISTS ST_MaxDistanceWestEastIRRegularPolygon(
+    geom GEOMETRY,
+    n integer)
+
 CREATE OR REPLACE FUNCTION ST_MaxDistanceWestEastIRRegularPolygon(
     geom GEOMETRY,
     n integer)

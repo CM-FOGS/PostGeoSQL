@@ -1,8 +1,12 @@
+DROP FUNCTION IF EXISTS ST_VariableBufferFromLine(
+    geom GEOMETRY, 
+    start_dist NUMERIC,
+    end_dist NUMERIC)
+
 CREATE OR REPLACE FUNCTION ST_VariableBufferFromLine(
     geom GEOMETRY, 
     start_dist NUMERIC,
-    end_dist NUMERIC
-)
+    end_dist NUMERIC)
 RETURNS GEOMETRY AS
 $BODY$
 WITH 
@@ -25,4 +29,4 @@ LANGUAGE SQL;
 
 SELECT ST_VariableBufferFromLine( 'LINESTRING( 0 0, 100 0)' , 1, 10 );
 
-© Martin Davis https://github.com/dr-jts 
+© Martin Davis https://github.com/dr-jts

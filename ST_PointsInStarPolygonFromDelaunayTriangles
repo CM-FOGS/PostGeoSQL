@@ -1,3 +1,6 @@
+DROP FUNCTION IF EXISTS ST_PointsInStarPolygonFromDelaunayTriangles(
+  geom GEOMETRY)
+
 CREATE OR REPLACE FUNCTION ST_PointsInStarPolygonFromDelaunayTriangles(
   geom GEOMETRY)
 RETURNS GEOMETRY AS

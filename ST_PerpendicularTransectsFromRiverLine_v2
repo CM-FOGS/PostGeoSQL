@@ -1,3 +1,8 @@
+DROP FUNCTION IF EXISTS ST_PerpendicularTransectsFromRiverLine_v2(
+    geom GEOMETRY,
+    sl integer,
+    radius_buffer float) 
+
 CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromRiverLine_v2(
     geom GEOMETRY,
     sl integer,

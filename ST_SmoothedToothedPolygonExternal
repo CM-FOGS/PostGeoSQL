@@ -1,3 +1,7 @@
+DROP FUNCTION IF EXISTS ST_SmoothedToothedPolygonExternal(
+     geom GEOMETRY,
+     radius float)
+
 CREATE OR REPLACE FUNCTION ST_SmoothedToothedPolygonExternal(
      geom GEOMETRY,
      radius float)

@@ -1,3 +1,10 @@
+DROP FUNCTION IF EXISTS ST_ArchimedianSpiralСlockwiseWest(
+    centerX double precision,
+    centerY double precision,
+    radius float,
+    circleSegs integer,
+    rings integer)
+
 CREATE OR REPLACE FUNCTION ST_ArchimedianSpiralСlockwiseWest(
     centerX double precision,
     centerY double precision,

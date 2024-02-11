@@ -1,3 +1,8 @@
+DROP FUNCTION IF EXISTS ST_MaximumAreaInscribedRectangleInPolygon(
+    geom GEOMETRY,
+    signed_distance float,
+    buffer float)
+
 CREATE OR REPLACE FUNCTION ST_MaximumAreaInscribedRectangleInPolygon(
     geom GEOMETRY,
     signed_distance float,

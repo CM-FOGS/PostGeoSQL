@@ -1,3 +1,8 @@
+DROP FUNCTION IF EXISTS ST_RoadAxis(
+    geom GEOMETRY,
+    n integer,
+    fraction float8)
+
 CREATE OR REPLACE FUNCTION ST_RoadAxis(
     geom GEOMETRY,
     n integer,

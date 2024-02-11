@@ -26,3 +26,4 @@ Links to published geo functions on the Q&A website:
 20) ST_CarvesPolygons - https://gis.stackexchange.com/a/333562/120129; https://gis.stackexchange.com/a/302470/120129;
 21) ST_SmoothedToothedPolygonExternal, ST_SmoothedToothedPolygonInternal - https://gis.stackexchange.com/a/429894/120129;
 22) ST_ExtractionExternalGridCells, ST_ExtractionExternalGridCellsByDoubleBufferization  - https://gis.stackexchange.com/a/350076/120129;
+23) ST_RoadAxis - https://gis.stackexchange.com/a/340590/120129;

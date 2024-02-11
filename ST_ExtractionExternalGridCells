@@ -1,3 +1,6 @@
+DROP FUNCTION IF EXISTS ST_ExtractionExternalGridCells(
+    geom GEOMETRY)
+
 CREATE OR REPLACE FUNCTION ST_ExtractionExternalGridCells(
     geom GEOMETRY)
 RETURNS TABLE (geom GEOMETRY) AS 

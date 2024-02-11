@@ -1,3 +1,7 @@
+DROP FUNCTION IF EXISTS ST_ExtractionExternalGridCellsByDoubleBufferization(
+    geom GEOMETRY,
+    radius_buffer float)
+
 CREATE OR REPLACE FUNCTION ST_ExtractionExternalGridCellsByDoubleBufferization(
     geom GEOMETRY,
     radius_buffer float)
@@ -9,6 +13,5 @@ $BODY$
         SELECT ST_Collect(a.geom) geom FROM tbla a JOIN tblb b ON ST_Intersects(a.geom, b.geom);
 $BODY$
 LANGUAGE SQL
-RUN
 
 SELECT ST_ExtractionExternalGridCellsByDoubleBufferization(ST_Collect(geom), 0.001) geom FROM <polygon_grid_table>

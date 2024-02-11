@@ -1,3 +1,8 @@
+DROP FUNCTION IF EXISTS ST_ExtendLine(
+    geom GEOMETRY,
+    length_left double precision,
+    length_rigth double precision)
+
 CREATE OR REPLACE FUNCTION ST_ExtendLine(
     geom GEOMETRY,
     length_left double precision,

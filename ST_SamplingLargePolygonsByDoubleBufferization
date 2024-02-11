@@ -1,3 +1,7 @@
+DROP FUNCTION IF EXISTS ST_SamplingLargePolygonsByDoubleBufferization(
+    geom GEOMETRY,
+    radius_buffer float)
+
 CREATE OR REPLACE FUNCTION ST_SamplingLargePolygonsByDoubleBufferization(
     geom GEOMETRY,
     radius_buffer float)

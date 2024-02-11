@@ -1,3 +1,9 @@
+DROP FUNCTION IF EXISTS ST_WavyLineEven_round(
+    geom GEOMETRY,
+    sl integer,
+    n integer,
+    k integer)
+
 CREATE OR REPLACE FUNCTION ST_WavyLineEven_round(
     geom GEOMETRY,
     sl integer,

@@ -1,6 +1,8 @@
+DROP FUNCTION IF EXISTS ST_PointsInStarPolygon(
+    geom GEOMETRY)
+
 CREATE OR REPLACE FUNCTION ST_PointsInStarPolygon(
-    geom GEOMETRY
-)
+    geom GEOMETRY)
 RETURNS GEOMETRY AS
 $BODY$
     WITH
@@ -16,6 +18,9 @@ SELECT ST_PointsInStarPolygon(ST_Collect(geom)) geom FROM <POINT_name_table>
 
 © Martin Davis https://github.com/dr-jts 
 
+DROP FUNCTION IF EXISTS ST_SnapPolygonToLine(
+    geom1 GEOMETRY,
+    geom2 GEOMETRY)
 
 CREATE OR REPLACE FUNCTION ST_SnapPolygonToLine(
     geom1 GEOMETRY,

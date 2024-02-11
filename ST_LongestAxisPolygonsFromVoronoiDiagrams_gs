@@ -1,3 +1,7 @@
+DROP FUNCTION IF EXISTS ST_LongestAxisPolygonsFromVoronoiDiagrams_gs(
+    geom GEOMETRY,
+    n integer)
+
 CREATE OR REPLACE FUNCTION ST_LongestAxisPolygonsFromVoronoiDiagrams_gs(
     geom GEOMETRY,
     n integer)

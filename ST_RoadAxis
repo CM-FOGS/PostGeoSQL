@@ -4,17 +4,16 @@ CREATE OR REPLACE FUNCTION ST_RoadAxis(
     fraction float8)
 RETURNS GEOMETRY AS  
 $BODY$
-  	  WITH
-      geodata AS (SELECT row_number() over() AS id, geom WHERE geom <> '".$empty."'),
-	  sort_by AS (SELECT geom, case id % 2 when 0 then 'even' else 'odd' end FROM geodata),
-      left_line AS (SELECT ST_Union(geom) geom FROM sort_by WHERE sort_by.case='even'),
-	  right_line AS (SELECT ST_Union(geom) geom FROM sort_by WHERE sort_by.case='odd'),
-	  intervals AS (SELECT generate_series (0, n) steps),
-      lineinterpnt AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM intervals)) geom FROM left_line, intervals GROUP BY intervals.steps, geom),
-      transects AS ((SELECT DISTINCT stp, ST_ShortestLine(a.geom, b.geom) geom FROM lineinterpnt  a CROSS JOIN LATERAL 
-      (SELECT (geom) geom FROM right_line) b)),
-	  out_geodata AS (SELECT ST_MakeLine(geom) geom FROM (SELECT stp, ST_LineInterpolatePoint(geom, fraction) geom FROM transects) foo)
-	  SELECT ST_Collect(geom) geom FROM out_geodata;
+	WITH
+      	    geodata AS (SELECT row_number() over() AS id, geom WHERE geom <> '".$empty."'),
+	    sort_by AS (SELECT geom, case id % 2 when 0 then 'even' else 'odd' end FROM geodata),
+      	    left_line AS (SELECT ST_Union(geom) geom FROM sort_by WHERE sort_by.case='even'),
+	    right_line AS (SELECT ST_Union(geom) geom FROM sort_by WHERE sort_by.case='odd'),
+	    intervals AS (SELECT generate_series (0, n) steps),
+      	    lineinterpnt AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM intervals)) geom FROM left_line, intervals GROUP BY intervals.steps, geom),
+     	    transects AS ((SELECT DISTINCT stp, ST_ShortestLine(a.geom, b.geom) geom FROM lineinterpnt  a CROSS JOIN LATERAL 
+      	    (SELECT (geom) geom FROM right_line) b))
+	    SELECT ST_MakeLine(geom) geom FROM (SELECT stp, ST_LineInterpolatePoint(geom, fraction) geom FROM transects ORDER BY stp) foo;
 $BODY$
 LANGUAGE SQL
 
@@ -31,6 +30,6 @@ WITH
       lineinterpnt AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM intervals)) geom FROM left_line, intervals GROUP BY intervals.steps, geom),
       transects AS ((SELECT DISTINCT stp, ST_ShortestLine(a.geom, b.geom) geom FROM lineinterpnt  a CROSS JOIN LATERAL 
             (SELECT (geom) geom FROM right_line) b))
-	  SELECT ST_MakeLine(geom) geom FROM (SELECT stp, ST_LineInterpolatePoint(geom, 0.5) geom FROM transects) foo
+	  SELECT ST_MakeLine(geom) geom FROM (SELECT stp, ST_LineInterpolatePoint(geom, 0.5) geom FROM transects ORDER BY stp) foo
 
 

@@ -1,3 +1,7 @@
+DROP FUNCTION IF EXISTS ST_PerpendicularTransectsFromLine(
+    geom GEOMETRY,
+    sl integer)
+
 CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromLine(
     geom GEOMETRY,
     sl integer)

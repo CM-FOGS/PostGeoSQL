@@ -9,29 +9,18 @@ CREATE OR REPLACE FUNCTION ST_RoadAxis(
     fraction float8)
 RETURNS GEOMETRY AS  
 $BODY$
-	WITH
-      	    geodata AS (SELECT row_number() over() AS id, geom WHERE geom <> '".$empty."'),
-	    sort_by AS (SELECT geom, case id % 2 when 0 then 'even' else 'odd' end FROM geodata),
-      	    left_line AS (SELECT ST_Union(geom) geom FROM sort_by WHERE sort_by.case='even'),
-	    right_line AS (SELECT ST_Union(geom) geom FROM sort_by WHERE sort_by.case='odd'),
-	    intervals AS (SELECT generate_series (0, n) steps),
-      	    lineinterpnt AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM intervals)) geom FROM left_line, intervals GROUP BY intervals.steps, geom),
-     	    transects AS ((SELECT DISTINCT stp, ST_ShortestLine(a.geom, b.geom) geom FROM lineinterpnt  a CROSS JOIN LATERAL 
-      	    (SELECT (geom) geom FROM right_line) b))
-	    SELECT ST_MakeLine(geom) geom FROM (SELECT stp, ST_LineInterpolatePoint(geom, fraction) geom FROM transects ORDER BY stp) foo;
+WITH
+      geodata AS (SELECT (ST_Dump(geom)).geom),
+      left_line AS (SELECT (ST_Dump(geom)).geom geom LIMIT 1),
+      right_line AS (SELECT (a.geom) geom FROM geodata a WHERE NOT EXISTS (SELECT 1 FROM left_line b WHERE ST_Intersects(a.geom, b.geom))),
+	  intervals AS (SELECT generate_series (0, n) steps),
+      lineinterpnt AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM intervals)) geom FROM left_line, intervals GROUP BY intervals.steps, geom),
+      transects AS ((SELECT DISTINCT stp, ST_ShortestLine(a.geom, b.geom) geom FROM lineinterpnt  a CROSS JOIN LATERAL 
+            (SELECT (geom) geom FROM right_line) b) ORDER BY stp)
+      SELECT ST_MakeLine(geom) geom FROM (SELECT stp, ST_LineInterpolatePoint(geom, 0.5) geom FROM transects) foo
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_RoadAxis(ST_Collect(geom), 100, 0.5) geom FROM parallel_street
+SELECT ST_RoadAxis(ST_Union(geom), 100, 0.5) geom FROM parallel_street
 
-*experimental (function disabled)*
-
-WITH
-      geodata AS (SELECT row_number() over() AS id, geom FROM street_2line WHERE geom <> '".$empty."'),
-      sort_by AS (SELECT geom, case id % 2 when 0 then 'even' else 'odd' end FROM geodata),
-      left_line AS (SELECT ST_Union(geom) geom FROM sort_by WHERE sort_by.case='even'),
-      right_line AS (SELECT ST_Union(geom) geom FROM sort_by WHERE sort_by.case='odd'),
-      intervals AS (SELECT generate_series (0, 100) steps),
-      lineinterpnt AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM intervals)) geom FROM left_line, intervals GROUP BY intervals.steps, geom),
-      transects AS ((SELECT DISTINCT stp, ST_ShortestLine(a.geom, b.geom) geom FROM lineinterpnt  a CROSS JOIN LATERAL (SELECT (geom) geom FROM right_line) b))
-      SELECT ST_MakeLine(geom) geom FROM (SELECT stp, ST_LineInterpolatePoint(geom, 0.5) geom FROM transects ORDER BY stp) foo;
+*experimental*

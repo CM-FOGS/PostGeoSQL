@@ -1,13 +1,11 @@
 DROP FUNCTION IF EXISTS ST_WavyLineEven_round(
     geom GEOMETRY,
     sl integer,
-    n integer,
     k integer)
 
 CREATE OR REPLACE FUNCTION ST_WavyLineEven_round(
     geom GEOMETRY,
     sl integer,
-    n integer,
     k integer)
 RETURNS TABLE (geom GEOMETRY) AS 
 $BODY$
@@ -21,8 +19,8 @@ FROM generate_series(0, floor(d.len/sublen)::integer) AS t(i) WHERE (sublen * i)
         tble AS (SELECT ST_Reverse((ST_Dump(geom)).geom) geom FROM tblc WHERE tblc.case='odd'),
         group_geodata AS (SELECT ST_CurveToLine('CIRCULARSTRING('||ST_X(ST_StartPoint(geom))||' '||ST_Y(ST_StartPoint(geom))||','||ST_X(ST_Centroid(ST_OffsetCurve(geom, ST_Length(geom)/k, 'quad_segs=4 join=round')))||' '||ST_Y(ST_Centroid(ST_OffsetCurve(geom, ST_Length(geom)/k, 'quad_segs=4 join=round')))||', '||ST_X(ST_EndPoint(geom))||' '||ST_Y(ST_EndPoint(geom))||')') geom
 FROM tbld UNION SELECT ST_CurveToLine('CIRCULARSTRING('||ST_X(ST_StartPoint(geom))||' '||ST_Y(ST_StartPoint(geom))||','||ST_X(ST_Centroid(ST_OffsetCurve(geom, ST_Length(geom)/k, 'quad_segs=4 join=round')))||' '||ST_Y(ST_Centroid(ST_OffsetCurve(geom, ST_Length(geom)/k, 'quad_segs=4 join=round')))||', '||ST_X(ST_EndPoint(geom))||' '||ST_Y(ST_EndPoint(geom))||')') geom FROM tble)
-		SELECT ST_Collect(geom) geom FROM group_geodata;
+	SELECT ST_Collect(geom) geom FROM group_geodata;
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_WavyLineEven_round(geom, 15, 5, 5) geom FROM <LINE_name_table>
+SELECT ST_WavyLineEven_round(geom, 15, 5) geom FROM <LINE_name_table>

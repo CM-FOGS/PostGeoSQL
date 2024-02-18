@@ -35,7 +35,7 @@ RETURNS GEOMETRY AS
 $BODY$
     WITH
         tbla AS (SELECT (ST_Dump($1)).geom),
-        tblb AS (SELECT ST_RegularPolygonInscribedInCircle(geom, radius*i, k) geom FROM tbla a CROSS JOIN LATERAL generate_series (1, n) AS step(i))
+        tblb AS (SELECT ST_RegularPolygonInscribedInCircle(geom, radius*i, k) geom FROM tbla CROSS JOIN LATERAL generate_series (1, n) AS step(i))
         SELECT ST_Polygonize(geom) geom FROM tblb;
 $BODY$
 LANGUAGE SQL

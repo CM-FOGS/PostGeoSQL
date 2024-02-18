@@ -1,13 +1,11 @@
 DROP FUNCTION IF EXISTS ST_WavyLineOdd_round(
     geom GEOMETRY,
     sl integer,
-    n integer,
     k integer)
 
 CREATE OR REPLACE FUNCTION ST_WavyLineOdd_round(
     geom GEOMETRY,
     sl integer,
-    n integer,
     k integer)
 RETURNS TABLE (geom GEOMETRY) AS 
 $BODY$
@@ -25,4 +23,4 @@ FROM tbld UNION SELECT ST_CurveToLine('CIRCULARSTRING('||ST_X(ST_StartPoint(geom
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_WavyLineOdd_round(geom, 15, 5, 5) geom FROM <LINE_name_table>
+SELECT ST_WavyLineOdd_round(geom, 15, 5) geom FROM <LINE_name_table>

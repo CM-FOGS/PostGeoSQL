@@ -1,6 +1,7 @@
 The project is a library of SQL/GeoSQL functions designed to solve simple and complex vector geospatial problems in the PostgreSQL and PostGIS DBMS software environment.
 PostgreSQL programming language - SQL. 
 A brief description of how geo-functions work is generally published on the Q&A website at the following link - https://gis.stackexchange.com. 
+
 The authors and developers of the body functions used in the project is:
 © Martin Davis https://github.com/dr-jts;
 © Erwin Brandstetter https://dba.stackexchange.com/users/3684/erwin-brandstetter; 

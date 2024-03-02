@@ -1,7 +1,10 @@
 The project is a library of SQL/GeoSQL functions designed to solve simple and complex vector geospatial problems in the PostgreSQL and PostGIS DBMS software environment.
 PostgreSQL programming language - SQL. 
 A brief description of how geo-functions work is generally published on the Q&A website at the following link - https://gis.stackexchange.com. 
-The author and developer of the body functions used in the project with the names: ST_VariableBufferFromLine - https://trac.osgeo.org/postgis/wiki/UserWikiVariableBuffer; ST_PointsInStarPolygon - https://gis.stackexchange.com/a/350004/120129; ST_RegularPolygonInscribedInCircle - https://gis.stackexchange.com/a/427227/120129, ST_ArchimedianSpiralClockwiseEast, ST_ArchimedianSpiralClockwiseWest, ST_ArchimedianSpiralCounterClockwiseEast, ST_ArchimedianSpiralCounterClockwiseWest - https://gis.stackexchange.com/a/415996/120129; ST_RemovingHolesInPolygonsByArea - https://gis.stackexchange.com/a/431682/120129; ST_NormalsFromLine - https://gis.stackexchange.com/a/474000/120129 is Martin Davis https://github.com/dr-jts.
+The authors and developers of the body functions used in the project is:
+© Martin Davis https://github.com/dr-jts;
+© Erwin Brandstetter https://dba.stackexchange.com/users/3684/erwin-brandstetter; 
+© mustaccio https://dba.stackexchange.com/users/23721/mustaccio.
 
 Links to published geo functions on the Q&A website:
 1) ST_VoronoiDiagramsFromPolygons - https://gis.stackexchange.com/a/318112/120129;

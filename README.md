@@ -27,3 +27,4 @@ Links to published geo functions on the Q&A website:
 21) ST_SmoothedToothedPolygonExternal, ST_SmoothedToothedPolygonInternal - https://gis.stackexchange.com/a/429894/120129;
 22) ST_ExtractionExternalGridCells, ST_ExtractionExternalGridCellsByDoubleBufferization  - https://gis.stackexchange.com/a/350076/120129;
 23) ST_RoadAxis - https://gis.stackexchange.com/a/340590/120129;
+24) generate_numbers_interval_as_descending_order, generate_numbers_interval_des_ascending_order - https://dba.stackexchange.com/a/337294/222586;

@@ -10,7 +10,7 @@ The authors and developers of the body functions used in the project is:
 
 © mustaccio https://dba.stackexchange.com/users/23721/mustaccio.
 
-Links to published geo functions on the Q&A website:
+Links to published SQL/GeoSQL functions on the Q&A website:
 1) ST_VoronoiDiagramsFromPolygons - https://gis.stackexchange.com/a/318112/120129;
 2) ST_VoronoiDiagramsFromLines - https://gis.stackexchange.com/a/348154/120129;
 3) ST_PerpendicularTransectsFromLine - https://gis.stackexchange.com/a/473663/120129;

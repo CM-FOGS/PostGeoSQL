@@ -7,15 +7,13 @@ CREATE OR REPLACE FUNCTION generate_numbers_interval_des_ascending_order(
     i integer)
 RETURNS TABLE (x integer) AS 
 $BODY$
-WITH 
-s AS (SELECT n, x, lag(x) OVER (ORDER BY n, ((n%2 * 2)-1) * x) l_x 
-      FROM generate_series(0, i-1) n, generate_series(0, k) x)
-SELECT x FROM s WHERE x <> coalesce(l_x, -1) ORDER BY n, ((n%2 * 2)-1) * x;
+    WITH 
+        s AS (SELECT n, x, lag(x) OVER (ORDER BY n, ((n%2 * 2)-1) * x) l_x FROM generate_series(0, i-1) n, generate_series(0, k) x)
+        SELECT x FROM s WHERE x <> coalesce(l_x, -1) ORDER BY n, ((n%2 * 2)-1) * x;
 $BODY$
 LANGUAGE SQL
-Run
 
-SELECT generate_numbers_interval_des_ascending_order(5,3)
+SELECT generate_numbers_interval_des_ascending_order(5,3) gni
 
 The authors and developers of the body functions is 
 © Erwin Brandstetter (user:3684)

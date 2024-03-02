@@ -17,4 +17,4 @@ SELECT generate_numbers_interval_des_ascending_order(5,3) gni
 
 The authors and developers of the body functions is 
 © Erwin Brandstetter (user:3684)
-© @mustaccio (user:23721)
+© mustaccio (user:23721)

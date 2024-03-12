@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION generate_numbers_interval_step_des_ascending_order(
     k numeric,
     i numeric,
-	st numeric)
+    st numeric)
 RETURNS TABLE (x numeric) AS
 $BODY$
     WITH 

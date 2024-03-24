@@ -1,4 +1,8 @@
-CREATE OR REPLACE FUNCTION generate_numbers_notnull_duplicates_interval_ascending_order(
+DROP FUNCTION IF EXISTS generate_numbers_notnull_dupl_border_interval_ascending_order(
+    k integer,
+    i integer)
+
+CREATE OR REPLACE FUNCTION generate_numbers_notnull_dupl_border_interval_ascending_order(
     k integer,
     i integer)
 RETURNS TABLE (x integer) AS 
@@ -10,7 +14,7 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT generate_numbers_notnull_duplicates_interval_ascending_order(5,3) gndi
+SELECT generate_numbers_notnull_dupl_border_interval_ascending_order(5,3) gndi
 
 The authors and developers of the body functions is
 © Erwin Brandstetter https://dba.stackexchange.com/users/3684/erwin-brandstetter

@@ -16,5 +16,5 @@ LANGUAGE SQL
 
 SELECT generate_numbers_notnull_dupl_border_interval_ascending_order(5,3) gndi
 
-The authors and developers of the body functions is
+The authors and developers of the function body is
 © Erwin Brandstetter https://dba.stackexchange.com/users/3684/erwin-brandstetter

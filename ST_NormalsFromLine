@@ -31,4 +31,5 @@ $BODY$;
 
 SELECT ST_NormalsFromLine(geom, 100, 10) geom FROM <LINE_name_table>
 
+The authors and developers of the function body is
 © Martin Davis https://github.com/dr-jts 

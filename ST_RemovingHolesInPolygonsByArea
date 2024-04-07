@@ -15,4 +15,5 @@ LANGUAGE SQL
 
 SELECT ST_RemovingHolesInPolygonsByArea(geom, 100) geom FROM <geodata>
 
+The authors and developers of the function body is
 © Martin Davis https://github.com/dr-jts

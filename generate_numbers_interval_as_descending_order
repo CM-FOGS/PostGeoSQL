@@ -15,6 +15,6 @@ LANGUAGE SQL
 
 SELECT generate_numbers_interval_as_descending_order(5,3) gni
 
-The authors and developers of the body functions is
+The authors and developers of the function body is
 © Erwin Brandstetter https://dba.stackexchange.com/users/3684/erwin-brandstetter; 
 © mustaccio https://dba.stackexchange.com/users/23721/mustaccio.

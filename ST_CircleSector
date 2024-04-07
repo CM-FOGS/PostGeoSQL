@@ -1,11 +1,11 @@
-DROP FUNCTION IF EXISTS ST_Circle_sector(
+DROP FUNCTION IF EXISTS ST_CircleSector(
     geom GEOMETRY,
     radius float,
     angle_sector numeric,
     angle_rotation numeric,
     step_angle numeric)
 
-CREATE OR REPLACE FUNCTION ST_Circle_sector(
+CREATE OR REPLACE FUNCTION ST_CircleSector(
     geom GEOMETRY,
     radius float,
     angle_sector numeric,
@@ -27,6 +27,6 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_Circle_sector(geom, 1000, 60, 90, 1) geom FROM (SELECT ST_SetSRID(ST_MakePoint(15.326975287, 37.007075212),4326) geom) foo
+SELECT ST_CircleSector(geom, 1000, 60, 90, 1) geom FROM (SELECT ST_SetSRID(ST_MakePoint(15.326975287, 37.007075212),4326) geom) foo
 
 *experimental

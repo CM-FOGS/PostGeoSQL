@@ -1,4 +1,4 @@
-DROP FUNCTION ST_BufferClusteringRequiredDistance(
+DROP FUNCTION IF EXISTS ST_BufferClusteringRequiredDistance(
    geom GEOMETRY,
    required_distance float,
    gr_cnt integer)

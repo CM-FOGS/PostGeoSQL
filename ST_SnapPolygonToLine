@@ -16,6 +16,7 @@ LANGUAGE SQL
 
 SELECT ST_PointsInStarPolygon(ST_Collect(geom)) geom FROM <POINT_name_table>
 
+The authors and developers of the function body is
 © Martin Davis https://github.com/dr-jts 
 
 DROP FUNCTION IF EXISTS ST_SnapPolygonToLine(

@@ -20,4 +20,4 @@ LANGUAGE SQL
 
 SELECT ST_RoadAxis(ST_Union(geom), 300) geom FROM parallel_street
 
-*experimental*
+*experimental function*

@@ -2,7 +2,7 @@ The project is a library of SQL/GeoSQL functions designed to solve simple and co
 PostgreSQL programming language - SQL. 
 A brief description of how geo-functions work is generally published on the Q&A website at the following link - https://gis.stackexchange.com. 
 
-The authors and developers of the body functions used in the project is:
+The authors and developers of the functions body used in the project is:
 
 © Martin Davis https://github.com/dr-jts;
 

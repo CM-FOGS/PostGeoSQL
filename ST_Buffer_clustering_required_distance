@@ -1,9 +1,9 @@
-DROP FUNCTION ST_Buffer_clustering_required_distance(
+DROP FUNCTION ST_BufferClusteringRequiredDistance(
    geom GEOMETRY,
    required_distance float,
    gr_cnt integer)
 
-CREATE OR REPLACE FUNCTION ST_Buffer_clustering_required_distance(
+CREATE OR REPLACE FUNCTION ST_BufferClusteringRequiredDistance(
    geom GEOMETRY,
    required_distance float,
    gr_cnt integer)
@@ -18,4 +18,4 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_Buffer_clustering_required_distance(geom, 501, 1) geom FROM (SELECT ST_Collect(geom) geom FROM <polygons_name_table) foo
+SELECT ST_BufferClusteringRequiredDistance(geom, 501, 1) geom FROM (SELECT ST_Collect(geom) geom FROM <polygons_name_table) foo

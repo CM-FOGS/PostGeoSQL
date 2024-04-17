@@ -1,9 +1,9 @@
-DROP FUNCTION IF EXISTS ST_WavyLineEven_round(
+DROP FUNCTION IF EXISTS ST_CircularWavyLineEven_round(
     geom GEOMETRY,
     sl integer,
     k integer)
 
-CREATE OR REPLACE FUNCTION ST_WavyLineEven_round(
+CREATE OR REPLACE FUNCTION ST_CircularWavyLineEven_round(
     geom GEOMETRY,
     sl integer,
     k integer)
@@ -23,4 +23,4 @@ FROM tbld UNION SELECT ST_CurveToLine('CIRCULARSTRING('||ST_X(ST_StartPoint(geom
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_WavyLineEven_round(geom, 15, 5) geom FROM <LINE_name_table>
+SELECT ST_CircularWavyLineEven_round(geom, 15, 5) geom FROM <LINE_name_table>

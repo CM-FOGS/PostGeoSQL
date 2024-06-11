@@ -20,7 +20,7 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_ArchimedianSpiralСlockwiseEast(15.326975287, 37.007075212, 0.003, 75, 3) geom
+SELECT ST_ArchimedianSpiralCounterClockwiseEast(15.326975287, 37.007075212, 0.003, 75, 3) geom
 
 The authors and developers of the function body is
 © Martin Davis https://github.com/dr-jts 

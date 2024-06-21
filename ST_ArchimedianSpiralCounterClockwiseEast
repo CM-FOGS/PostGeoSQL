@@ -47,4 +47,4 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_ArchimedianSpiralCounterClockwiseEast(15.326975287, 37.007075212, 0.003, 75, 3.3) geom 
+SELECT ST_ArchimedianSpiralCounterClockwiseEast_free(15.326975287, 37.007075212, 0.003, 75, 3.3) geom 

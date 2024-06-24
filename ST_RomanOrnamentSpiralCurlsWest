@@ -16,8 +16,8 @@ CREATE OR REPLACE FUNCTION ST_RomanOrnamentSpiralCurlsWest(
 RETURNS GEOMETRY AS
 $BODY$
      WITH
-         tbla AS (SELECT ST_SetSriD(ST_ArchimedianSpiralСlockwiseEast(centerX, centerY, radius, circleSegs, rings),4326) geom),
-         tblb AS (SELECT ST_SetSriD(ST_ArchimedianSpiralСlockwiseWest(centerX, centerY, radius, circleSegs, rings),4326) geom),
+         tbla AS (SELECT ST_ArchimedianSpiralСlockwiseEast(centerX, centerY, radius, circleSegs, rings) geom),
+         tblb AS (SELECT ST_ArchimedianSpiralСlockwiseWest(centerX, centerY, radius, circleSegs, rings) geom),
          tblc AS (SELECT ST_Translate(geom, 2*radius, 0) geom FROM tblb),
          tbld AS (SELECT * FROM tbla UNION SELECT * FROM tblc),
          tble AS (SELECT * FROM tbld UNION SELECT ST_Translate(geom, 2*i*radius, 0) geom FROM tbld CROSS JOIN LATERAL generate_series (1, quantity-1) AS step(i))
@@ -25,4 +25,4 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_RomanOrnamentSpiralCurlsWest(15.326975287, 37.007075212, 0.03, 75, 1, 10) geom 
+SELECT ST_SetSRID(ST_RomanOrnamentSpiralCurlsWest(15.326975287, 37.007075212, 0.03, 75, 1, 10), 4326) geom

@@ -1,42 +1,32 @@
+WITH spiralStep AS (
+   SELECT i, 
+          80 AS circleSegs,   -- Parameter: quantization of arc
+          1000 AS centerX,    -- Parameter: center X
+          1000 as centerY,    -- Parameter: center Y
+          100.0 as radius     -- Parameter: radius
+  FROM generate_series(0, 5 * 80) t(i) -- Parameter: # rings = 5
+)
+SELECT ST_MakeLine( 
+    ST_Point(centerX + (radius / circleSegs) * i * cos(i * (2 * pi() / circleSegs)),
+             centerY + (radius / circleSegs) * i * sin(i * (2 * pi() / circleSegs)))
+ORDER BY i) AS geom
+FROM spiralStep;
+
+The authors and developers of the function body is
+© Martin Davis https://github.com/dr-jts 
+
 DROP FUNCTION IF EXISTS ST_ArchimedianSpiralCounterClockwiseEast(
     centerX double precision,
     centerY double precision,
     radius float,
     circleSegs integer,
-    rings integer)
+    rings numeric)
 
 CREATE OR REPLACE FUNCTION ST_ArchimedianSpiralCounterClockwiseEast(
     centerX double precision,
     centerY double precision,
     radius float,
     circleSegs integer,
-    rings integer)
-RETURNS GEOMETRY AS
-$BODY$
-    WITH 
-        spiralStep AS (SELECT i FROM generate_series(0, rings * circleSegs) t(i))
-        (SELECT ST_MakeLine(ST_MakePoint(centerX + (radius/circleSegs) * i * cos(i * (2 * pi()/circleSegs)),
-         centerY + (radius/circleSegs) * i * sin(i * (2 * pi()/circleSegs)))) AS geom FROM spiralStep);
-$BODY$
-LANGUAGE SQL
-
-SELECT ST_ArchimedianSpiralCounterClockwiseEast(15.326975287, 37.007075212, 0.003, 75, 3) geom
-
-The authors and developers of the function body is
-© Martin Davis https://github.com/dr-jts 
-
-DROP FUNCTION IF EXISTS ST_ArchimedianSpiralCounterClockwiseEast_free(
-    centerX double precision,
-    centerY double precision,
-    radius float,
-    circleSegs integer,
-    rings numeric)
-
-CREATE OR REPLACE FUNCTION ST_ArchimedianSpiralCounterClockwiseEast_free(
-    centerX double precision,
-    centerY double precision,
-    radius float,
-    circleSegs integer,
     rings numeric)
 RETURNS GEOMETRY AS
 $BODY$
@@ -47,4 +37,4 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_ArchimedianSpiralCounterClockwiseEast_free(15.326975287, 37.007075212, 0.003, 75, 3.3) geom 
+SELECT ST_ArchimedianSpiralCounterClockwiseEast(15.326975287, 37.007075212, 0.003, 75, 3.3) geom 

@@ -37,4 +37,4 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_ArchimedianSpiralCounterClockwiseWest(15.326975287, 37.007075212, 0.003, 75, 3.3) geom
+SELECT ST_SetSrid(ST_ArchimedianSpiralCounterClockwiseWest(15.326975287, 37.007075212, 0.003, 75, 3.3), 4326) geom

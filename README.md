@@ -1,5 +1,5 @@
-The project is a library of SQL/GeoSQL functions designed to solve simple and complex vector geospatial problems in the DBMS PostgreSQL and PostGIS software environment.
-PostgreSQL programming language - SQL. 
+The project is expandable library geospatial vector functions based on SQL, PostgreSQL, PostGIS software environment.
+Programming language - SQL.
 A brief description of how geo-functions work is generally published on the Q&A website at the following link - https://gis.stackexchange.com. 
 
 The authors and developers of the functions body used in the project is:

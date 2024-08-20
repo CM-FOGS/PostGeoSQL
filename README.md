@@ -46,8 +46,11 @@ DROP FUNCTION IF EXISTS generate_identical_numbers_notnull_interval_ascending_or
 
 A brief description of how geo-functions work is generally published on the Q&A website at the following link - https://gis.stackexchange.com. 
 The authors and developers of the functions body used in the project is:
+
 © Martin Davis https://github.com/dr-jts;
+
 © Erwin Brandstetter https://dba.stackexchange.com/users/3684/erwin-brandstetter;
+
 © mustaccio https://dba.stackexchange.com/users/23721/mustaccio.
 
 Links to published SQL/GeoSQL functions on the Q&A website:

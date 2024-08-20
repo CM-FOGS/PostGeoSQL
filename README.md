@@ -1,13 +1,37 @@
 The project is expandable library geospatial vector functions based on SQL, PostgreSQL, PostGIS software environment.
 Programming language - SQL.
+Instructions for installing, verifying the creation, operation and deletion of the function
+1. The following software must be installed on the PC, laptop or JVM to work with the function library: PostgreSQL, PostGIS and pgAdmin.
+2. Installing, checking the creation of the function, operation and deletion of the function
+2.1 To install the required function it is necessary to launch the pgAdmin application, enter the password, connect to the spatial database and select the working schema, then on the control panel it is necessary to find and select the “Tools” button, then in the drop-down field with a list select the field named “Query Tool” and activate the field by clicking the left mouse button. In the workspace named “Query Editor” it is necessary to copy and paste the required function and run it for execution (add it to the library of database/space database functions) using the button located on the PC keyboard named “F5” or the program button in the form of an equilateral triangle with a vertical base named “Execute/Refresh (F5)” located on the pgAdmin toolbar. 
+2.2 To check the creation of a new function, it is necessary to enter the main library of database/space database functions (Functions(count)) located in alphabetical order in the main tree of the active database/space database and make sure that the function has been created.
+2.3 To check the work of the created function in the workspace named “Query Editor” it is necessary to run a query with the following structure “SELECT new function name with setting the necessary values of function parameters” and get the result of its execution.
+2.4 To delete a function in the workspace with the name “Query Editor” pgAdmin it is necessary to run a query in the form “Drop function, function name, function parameters”.
+3 The library of all functions is presented in the download folder with the name “PostGeoSQL-main” in the form of files with the name of the function. The file is opened with a text editor such as Notepad++, WordPad or similar.
+4. An example of creating, checking operation and deleting a function is given below.
+4.1 Create a function
+<CREATE OR REPLACE FUNCTION generate_identical_numbers_notnull_interval_ascending_order(
+    k integer,
+    i integer)
+RETURNS TABLE (x integer) AS 
+$BODY$
+      SELECT n
+      FROM generate_series(1, k) n 
+           , generate_series(1, i) x  
+      ORDER BY n, ((x%2 * 2) - 1) * n;
+$BODY$
+LANGUAGE SQL>
+4.2 Run the function for execution
+<SELECT generate_identical_numbers_notnull_interval_ascending_order(5,3) gini>
+4.3 Remove the function from the main function library
+DROP FUNCTION IF EXISTS generate_identical_numbers_notnull_interval_ascending_order(
+    k integer,
+    i integer)
+
 A brief description of how geo-functions work is generally published on the Q&A website at the following link - https://gis.stackexchange.com. 
-
 The authors and developers of the functions body used in the project is:
-
 © Martin Davis https://github.com/dr-jts;
-
 © Erwin Brandstetter https://dba.stackexchange.com/users/3684/erwin-brandstetter;
-
 © mustaccio https://dba.stackexchange.com/users/23721/mustaccio.
 
 Links to published SQL/GeoSQL functions on the Q&A website:

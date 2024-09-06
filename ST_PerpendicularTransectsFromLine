@@ -1,10 +1,10 @@
 DROP FUNCTION IF EXISTS ST_PerpendicularTransectsFromLine(
     geom GEOMETRY,
-    sl integer)
+    sl numeric)
 
 CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromLine(
     geom GEOMETRY,
-    sl integer)
+    sl numeric)
     RETURNS TABLE (geom GEOMETRY) AS 
 $BODY$
 	WITH
@@ -17,4 +17,4 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_PerpendicularTransectsFromLine(geom, 15) geom FROM <name_line_table>
+SELECT ST_PerpendicularTransectsFromLine(geom, 1.5) geom FROM <name_line_table>

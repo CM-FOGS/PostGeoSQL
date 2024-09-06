@@ -1,11 +1,11 @@
 DROP FUNCTION IF EXISTS ST_PerpendicularTransectsFromRiverLine_v1(
 	geom GEOMETRY,
-	sl integer,
+	sl numeric,
 	radius_buffer float)
 
 CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromRiverLine_v1(
 	geom GEOMETRY,
-	sl integer,
+	sl numeric,
 	radius_buffer float)
 RETURNS TABLE (geom GEOMETRY) AS 
 $BODY$
@@ -25,4 +25,4 @@ FROM generate_series(0, floor(d.len/sublen)::integer) AS t(i) WHERE (sublen * i)
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_PerpendicularTransectsFromRiverLine_v1(geom, 15, 5) geom FROM <line_name_table>
+SELECT ST_PerpendicularTransectsFromRiverLine_v1(geom, 1.5, 5) geom FROM <line_name_table>

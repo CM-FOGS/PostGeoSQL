@@ -23,7 +23,6 @@ $BODY$
 LANGUAGE SQL
 
 SELECT ST_BambooBuffer(ST_Collect(geom), 15,5) geom FROM <line_name_table>
-*experimental*
 
 WITH
 	geodata AS (SELECT row_number() over() AS id, geom FROM <line_name_table>),

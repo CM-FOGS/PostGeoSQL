@@ -18,7 +18,7 @@ LANGUAGE SQL
 
 SELECT ST_SetSRID(ST_RegularPolygonInscribedInCircle(geom, 0.1, 5),4326) geom FROM <point_table>
 
-© Martin Davis https://github.com/dr-jts 
+© Martin Davis https://github.com/dr_jts 
 
 DROP FUNCTION IF EXISTS ST_MultyRingsBuffersFromPoint(
     geom GEOMETRY,

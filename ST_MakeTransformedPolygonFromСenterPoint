@@ -1,27 +1,27 @@
 DROP FUNCTION IF EXISTS ST_MakeTransformedPolygonFromСenterPoint(
-  geom GEOMETRY,
-  outerRadius1 float,
-	outerRadius2 float,
-	numberOuterSides integer,
-	innerRadius1 float,
-	innerRadius2 float,
-  numberInnerSides integer)
+geom GEOMETRY,
+outerRadius1 float,
+outerRadius2 float,
+numberOuterSides integer,
+innerRadius1 float,
+innerRadius2 float,
+numberInnerSides integer)
 
 CREATE OR REPLACE FUNCTION ST_MakeTransformedPolygonFromСenterPoint(
-  geom GEOMETRY,
-  outerRadius1 float,
-	outerRadius2 float,
-	numberOuterSides integer,
-	innerRadius1 float,
-	innerRadius2 float,
-  numberInnerSides integer)
+geom GEOMETRY,
+outerRadius1 float,
+outerRadius2 float,
+numberOuterSides integer,
+innerRadius1 float,
+innerRadius2 float,
+numberInnerSides integer)
 RETURNS GEOMETRY AS
 $BODY$
 WITH 
-    tbla AS (SELECT $1),
-	  tblb AS (SELECT ST_MakeLine(ST_Point(ST_X(geom) + outerRadius1 * COSD(90 + i * 360/numberOuterSides), ST_Y(geom) + outerRadius2 * SIND(90 + i * 360/numberOuterSides))) geom FROM tbla CROSS JOIN generate_series(0,  numberOuterSides) AS s(i)),
-	  tblc AS (SELECT ST_MakeLine(ST_Point(ST_X(geom) + innerRadius1 * COSD(90 + i * 360/numberInnerSides), ST_Y(geom) + innerRadius2 * SIND(90 + i * 360/numberInnerSides))) geom FROM tbla CROSS JOIN generate_series(0, numberInnerSides) AS s(i))
-     		     SELECT ST_BuildArea(ST_Collect(geom)) geom FROM (SELECT geom FROM tblb UNION SELECT geom FROM tblc) foo;
+	tbla AS (SELECT $1),
+	tblb AS (SELECT ST_MakeLine(ST_Point(ST_X(geom) + outerRadius1 * COSD(90 + i * 360/numberOuterSides), ST_Y(geom) + outerRadius2 * SIND(90 + i * 360/numberOuterSides))) geom FROM tbla CROSS JOIN generate_series(0,  numberOuterSides) AS s(i)),
+	tblc AS (SELECT ST_MakeLine(ST_Point(ST_X(geom) + innerRadius1 * COSD(90 + i * 360/numberInnerSides), ST_Y(geom) + innerRadius2 * SIND(90 + i * 360/numberInnerSides))) geom FROM tbla CROSS JOIN generate_series(0, numberInnerSides) AS s(i))
+     		SELECT ST_BuildArea(ST_Collect(geom)) geom FROM (SELECT geom FROM tblb UNION SELECT geom FROM tblc) foo;
 $BODY$
 LANGUAGE SQL
 

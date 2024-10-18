@@ -12,4 +12,4 @@ SELECT ST_MakeLine(
 ORDER BY i) AS geom
 FROM spiralStep;
 
-The authors and developers of the function body is © Martin Davis https://github.com/dr-jts
+The author and developer of the function body is © Martin Davis https://github.com/dr-jts

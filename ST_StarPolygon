@@ -1,12 +1,12 @@
 DROP FUNCTION IF EXISTS ST_StarPolygon(
-  geom GEOMETRY,
+  	geom GEOMETRY,
 	outerRadius float,
 	innerRadius float,
 	numberSides integer,
 	k integer)
 
 CREATE OR REPLACE FUNCTION ST_StarPolygon(
-  geom GEOMETRY,
+ 	geom GEOMETRY,
 	outerRadius float,
 	innerRadius float,
 	numberSides integer,

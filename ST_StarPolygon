@@ -14,7 +14,7 @@ CREATE OR REPLACE FUNCTION ST_StarPolygon(
 RETURNS GEOMETRY AS
 $BODY$
 WITH
-    tbla AS (SELECT ST_StarPolygonContour($1, outerRadius, innerRadius, numberSides, k) geom)
+    tbla AS (SELECT ST_StarPolygonContour($1, $2, $3, $4, $5) geom)
             SELECT ST_LinesToPolygons(geom) geom FROM tbla
 $BODY$
 LANGUAGE SQL

@@ -22,4 +22,3 @@ LANGUAGE SQL
 SELECT ST_StarPolygon(geom, 0.001, 0.01, 360, 5) geom FROM <points_table_4326>
 
 important: experimental function, it is necessary to follow the orientation of the figures!
-constraint - the value of k must be in the following range of numbers: WHERE k BETWEEN 2 AND 180.

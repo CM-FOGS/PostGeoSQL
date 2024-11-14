@@ -1,4 +1,4 @@
-The project is expandable library geospatial vector functions based on SQL, PostgreSQL, PostGIS software environment.
+The international project is expandable library geospatial vector functions based on SQL, PostgreSQL, PostGIS software environment.
 
 Programming language - SQL.
 

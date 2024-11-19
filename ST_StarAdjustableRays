@@ -1,0 +1,23 @@
+DROP FUNCTION ST_StarAdjustableRays(
+geom GEOMETRY,
+radius1 float,
+radius2 float,
+number_rays integer)
+
+CREATE OR REPLACE FUNCTION ST_StarAdjustableRays(
+geom GEOMETRY,
+radius1 float,
+radius2 float,
+number_rays integer)
+RETURNS GEOMETRY AS
+$BODY$
+WITH 
+tbla AS (SELECT $1),
+tblb AS (SELECT ROW_NUMBER() OVER () num, ST_Point(ST_X($1) + $2 * COSD(90 + i * 360/$4), ST_Y($1) + $2 * SIND(90 + i * 360/$4)) geom FROM generate_series(0, $4) AS s(i)),
+tblc AS (SELECT ROW_NUMBER() OVER () num, ST_Point(ST_X($1) + $3 * COSD(90 + i * 360/$4), ST_Y($1) + $3 * SIND(90 + i * 360/$4)) geom FROM generate_series(0, $4) AS s(i)),
+tbld AS (SELECT num, geom FROM (SELECT num, geom FROM tblb UNION SELECT num, geom FROM tblc) foo)
+SELECT ST_Collect(geom) geom FROM (SELECT ST_MakeLine(geom) geom FROM tbld GROUP BY num ORDER BY num) foo;
+$BODY$
+LANGUAGE SQL
+
+SELECT ST_SetSriD(ST_StarAdjustableRays(geom, 2.9, 3, 360),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo

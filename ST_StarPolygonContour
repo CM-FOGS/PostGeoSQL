@@ -1,7 +1,7 @@
 DROP FUNCTION IF EXISTS ST_StarPolygonContour(
 geom GEOMETRY,
-outerRadius float,
 innerRadius float,
+outerRadius float,
 numberVertices integer)
 
 CREATE OR REPLACE FUNCTION ST_StarPolygonContour(

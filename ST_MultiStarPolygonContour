@@ -1,0 +1,25 @@
+DROP FUNCTION IF EXISTS ST_MultiStarPolygonContour(
+ 	geom GEOMETRY,
+	innerRadius float,
+	outerRadius float,
+	numberVertices integer,
+	numberContour integer)
+
+CREATE OR REPLACE FUNCTION ST_MultiStarPolygonContour(
+ 	geom GEOMETRY,
+	innerRadius float,
+	outerRadius float,
+	numberVertices integer,
+	numberContour integer)
+RETURNS GEOMETRY AS
+$BODY$
+WITH
+	tbla AS (SELECT $1),
+	tblb AS (SELECT ST_StarPolygonContour(geom, $2*i, $3*i, $4) geom FROM tbla CROSS JOIN LATERAL generate_series (1, $5) AS step(i))
+	SELECT ST_Collect(geom) geom FROM tblb;
+$BODY$
+LANGUAGE SQL
+
+SELECT ST_SetSrid(ST_MultiStarPolygonContour(geom, 0.001, 0.01, 16, 3),4326) geom FROM (SELECT ST_Point(0,0) geom) foo
+
+important is the expected behavior for a single object, for multiple objects you need to control the rotations of the shapes...

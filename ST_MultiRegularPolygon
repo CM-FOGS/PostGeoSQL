@@ -12,9 +12,9 @@ quantity integer)
 RETURNS GEOMETRY AS
 $BODY$
 WITH
-    tbla AS (SELECT $1),
-    tblb AS (SELECT ST_RegularPolygon($1,$2*i,$3) geom FROM tbla a CROSS JOIN LATERAL generate_series (1, $4) AS step(i) GROUP BY i)
-		SELECT ST_Polygonize(geom) geom FROM tblb;
+tbla AS (SELECT $1),
+tblb AS (SELECT ST_RegularPolygon($1,$2*i,$3) geom FROM tbla CROSS JOIN LATERAL generate_series (1, $4) AS step(i) GROUP BY i)
+SELECT ST_Polygonize(geom) geom FROM tblb;
 $BODY$
 LANGUAGE SQL
 

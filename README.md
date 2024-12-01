@@ -2,7 +2,7 @@ Free international research project, which is an extensible library of geospatia
 
 Programming language - SQL.
 
-Instructions for installing, verifying the creation, operation and deletion of the function
+Instructions for installing, verifying the creation, operation and deletion of the function by the example of PostgreSQL/PostGIS DBMS and pgAdmin application.
 
 1. The following software must be installed on the PC, laptop or JVM to work with the function library: PostgreSQL, PostGIS and pgAdmin.
 

@@ -1,4 +1,4 @@
-The free research international project is expandable library geospatial vector functions based on SQL, PostgreSQL, PostGIS software environment.
+Free international research project, which is an extensible library of geospatial functions working in all DBMSs supporting CTE (Common Table Expressions) query types and having spatial extension, for example: PostgreSQL/PostGIS, SQLite/SpatiaLite and similar.
 
 Programming language - SQL.
 

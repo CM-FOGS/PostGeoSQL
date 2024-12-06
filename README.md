@@ -1,4 +1,4 @@
-Free international research project, which is an extensible library of geospatial functions working in all DBMSs supporting CTE (Common Table Expressions) query types and having spatial extension, for example: PostgreSQL/PostGIS, SQLite/SpatiaLite and similar.
+Mysterious free international research project, which is an extensible library of geospatial functions working in all DBMSs supporting CTE (Common Table Expressions) query types and having spatial extension, for example: PostgreSQL/PostGIS, SQLite/SpatiaLite and similar.
 
 Programming language - SQL.
 

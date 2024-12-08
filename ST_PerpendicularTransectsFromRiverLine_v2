@@ -10,7 +10,7 @@ CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromRiverLine_v2(
     RETURNS TABLE (geom GEOMETRY) AS 
 $BODY$
     WITH
-        geodata AS (SELECT row_number() over() AS id, geom),
+        geodata AS (SELECT row_number() over() AS id, (ST_Dump(geom)).geom geom),
         linedivide AS (SELECT row_number() over() AS id, ST_LineSubstring(d.geom, substart, CASE WHEN subend > 1 THEN 1 ELSE subend END) geom FROM (SELECT id, geom, ST_Length(((geom)::geometry)) len, sl sublen FROM geodata) AS d
 CROSS JOIN LATERAL (SELECT i, (sublen * i)/len AS substart, (sublen * (i+1))/len AS subend
 FROM generate_series(0, floor(d.len/sublen)::integer) AS t(i) WHERE (sublen * i)/len <> 1.0) AS d2),
@@ -22,3 +22,4 @@ $BODY$
 LANGUAGE SQL
 
 SELECT ST_PerpendicularTransectsFromRiverLine_v2(geom, 1.5, 5) geom FROM <line_name_table> 
+* archive function

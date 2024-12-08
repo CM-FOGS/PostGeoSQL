@@ -13,7 +13,7 @@ WITH
 	FROM generate_series(0, floor(d.len/sublen)::integer) AS t(i) WHERE (sublen * i)/len <> 1.0) AS d2),
 	     rotate1 AS (SELECT id, ST_Rotate(ST_Collect(geom), -pi()/2, ST_LineInterpolatePoint(geom, 0.5)) geom FROM linecut GROUP BY id, geom),
 	     tr1 AS  (SELECT id,  ST_MakeLine(ST_StartPoint(geom), ST_EndPoint(geom)) geom FROM (SELECT id, (ST_Dump(geom)).geom geom FROM rotate1) foo),
-		 rotate2 AS (SELECT id, ST_Reverse(ST_Rotate(ST_Collect(geom), pi()/2, ST_LineInterpolatePoint(geom, 0.5))) geom FROM linecut GROUP BY id, geom),
+		 rotate2 AS (SELECT id, ST_Rotate(ST_Collect(geom), pi()/2, ST_LineInterpolatePoint(geom, 0.5)) geom FROM linecut GROUP BY id, geom),
 	     tr2 AS  (SELECT id, ST_MakeLine(ST_StartPoint(geom), ST_EndPoint(geom)) geom FROM (SELECT id, (ST_Dump(geom)).geom geom FROM rotate2) foo),
 		 dump_tr2 AS (SELECT id, (ST_DumpPoints(geom)).geom geom FROM tr2 GROUP BY id, geom),
 		line_incoherence AS (SELECT a.id, ST_ShortestLine(a.geom, b.geom) geom FROM tr2 a JOIN tr1 b ON a.id=b.id GROUP BY a.id, a.geom, b.geom ORDER BY id), 

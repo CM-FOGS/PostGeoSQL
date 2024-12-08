@@ -1,8 +1,8 @@
-DROP FUNCTION IF EXISTS ST_PerpendicularTransectsFromLine(
+DROP FUNCTION IF EXISTS ST_PerpendicularTransectsFromLineSimple(
     geom GEOMETRY,
     sl numeric)
 
-CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromLine(
+CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromLineSimple(
     geom GEOMETRY,
     sl numeric)
    RETURNS TABLE (geom GEOMETRY) AS 
@@ -16,5 +16,5 @@ $BODY$
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_PerpendicularTransectsFromLine(geom, 1.5) geom FROM <name_line_table>
-* experimental, further development
+SELECT ST_PerpendicularTransectsFromLineSimple(geom, 1.5) geom FROM <name_line_table>
+* function can solve the problem for rectilinear objects

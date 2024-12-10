@@ -1,19 +1,18 @@
-DROP FUNCTION IF EXISTS ST_PerpendicularTransectsFromLineSimple(
+DROP FUNCTION IF EXISTS ST_PerpendicularTransectsFromStraightLine(
     geom GEOMETRY,
     sl numeric)
 
-CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromLineSimple(
+CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromStraightLine(
     geom GEOMETRY,
     sl numeric)
-   RETURNS TABLE (geom GEOMETRY) AS 
+   RETURNS GEOMETRY AS 
 $BODY$
-WITH
+    WITH
         geodata AS (SELECT row_number() over() AS id, (ST_Dump($1)).geom geom),
         linecut AS (SELECT id, ST_LineSubstring(d.geom, substart, CASE WHEN subend > 1 THEN 1 ELSE subend END) geom FROM (SELECT id, geom, ST_Length(((geom)::geometry)) len, $2 sublen FROM geodata) AS d CROSS JOIN LATERAL (SELECT i,  (sublen * i)/len AS substart, (sublen * (i+1))/len AS subend
     FROM generate_series(0, floor(d.len/sublen)::integer) AS t(i) WHERE (sublen * i)/len <> 1.0) AS d2),
-        rotate AS (SELECT id, ST_Rotate(ST_Collect(geom), -pi()/2, ST_LineInterpolatePoint(geom, 0.5)) geom FROM linecut GROUP BY id, geom),
-        transects AS (SELECT ST_MakeLine(ST_StartPoint(geom), ST_EndPoint(geom)) geom FROM (SELECT (ST_Dump(geom)).geom geom FROM rotate) foo)
-        SELECT ST_Union(geom) geom FROM transects;
+        rotate AS (SELECT id, ST_Rotate(ST_Collect(geom), -pi()/2, ST_LineInterpolatePoint(geom, 0.5)) geom FROM linecut GROUP BY id, geom)
+        SELECT ST_Union(geom) geom FROM rotate;
 $BODY$
 LANGUAGE SQL
 

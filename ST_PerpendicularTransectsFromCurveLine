@@ -23,5 +23,5 @@ WITH
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_PerpendicularTransectsFromLineComplex(geom, 1.5) geom FROM <line_name_table>
+SELECT ST_PerpendicularTransectsFromCurveLine(geom, 1.5) geom FROM <line_name_table>
 * function is able to solve the problem with small simplifications for complex convoluted linear objects

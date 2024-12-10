@@ -1,8 +1,8 @@
-DROP FUNCTION IF EXISTS ST_PerpendicularTransectsFromCurveLine(
+DROP FUNCTION IF EXISTS ST_CurveLineTransects(
 	geom GEOMETRY,
 	sl numeric)
 
-CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromCurveLine(
+CREATE OR REPLACE FUNCTION ST_CurveLineTransects(
     geom GEOMETRY,
     sl numeric)
    RETURNS GEOMETRY AS 
@@ -23,5 +23,5 @@ WITH
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_PerpendicularTransectsFromCurveLine(geom, 1.5) geom FROM <line_name_table>
+SELECT ST_CurveLineTransects(geom, 1.5) geom FROM <line_name_table>
 * function is able to solve the problem with small simplifications for complex convoluted linear objects

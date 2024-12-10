@@ -56,7 +56,7 @@ The authors and developers of the functions body used in the project is:
 Links to published SQL/GeoSQL functions on the Q&A website:
 1) ST_VoronoiDiagramsFromPolygons - https://gis.stackexchange.com/a/318112/120129;
 2) ST_VoronoiDiagramsFromLines - https://gis.stackexchange.com/a/348154/120129;
-3) ST_PerpendicularTransectsFromStraightLine, ST_PerpendicularTransectsFromCurveLine - https://gis.stackexchange.com/a/473663/120129;
+3) ST_TransectsOnStraightLine, ST_TransectsOnCurveLine - https://gis.stackexchange.com/a/473663/120129;
 4) ST_RaysInGridPolygons - https://gis.stackexchange.com/a/443283/120129;
 5) ST_RegularPointsGridOfCornerPoints - https://gis.stackexchange.com/a/438068/120129;
 6) ST_Linestopolygons - https://gis.stackexchange.com/a/470364/120129;

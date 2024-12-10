@@ -1,11 +1,11 @@
-DROP FUNCTION IF EXISTS ST_PerpendicularTransectsFromLineComplex(
+DROP FUNCTION IF EXISTS ST_PerpendicularTransectsFromCurveLine(
 	geom GEOMETRY,
 	sl numeric)
 
-CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromLineComplex(
+CREATE OR REPLACE FUNCTION ST_PerpendicularTransectsFromCurveLine(
     geom GEOMETRY,
     sl numeric)
-   RETURNS TABLE (geom GEOMETRY) AS 
+   RETURNS GEOMETRY AS 
 $BODY$
 WITH
 	geodata AS (SELECT row_number() over() AS id, (ST_Dump($1)).geom geom),

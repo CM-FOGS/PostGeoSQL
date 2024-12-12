@@ -15,11 +15,10 @@ WITH
 	tr1 AS  (SELECT id,  ST_MakeLine(ST_StartPoint(geom), ST_EndPoint(geom)) geom FROM (SELECT id, (ST_Dump(geom)).geom geom FROM rotate1) foo),
 	rotate2 AS (SELECT id, ST_Rotate(ST_Collect(geom), pi()/2, ST_LineInterpolatePoint(geom, 0.5)) geom FROM linecut GROUP BY id, geom),
 	tr2 AS (SELECT id, ST_MakeLine(ST_StartPoint(geom), ST_EndPoint(geom)) geom FROM (SELECT id, (ST_Dump(geom)).geom geom FROM rotate2) foo),
-	dump_tr2 AS (SELECT id, (ST_DumpPoints(geom)).geom geom FROM tr2 GROUP BY id, geom),
-	line_incoherence AS (SELECT a.id, ST_ShortestLine(a.geom, b.geom) geom FROM tr2 a JOIN tr1 b ON a.id=b.id GROUP BY a.id, a.geom, b.geom ORDER BY id), 
-	tranaectline1 AS (SELECT a.id, ST_ShortestLine(ST_LineInterpolatePoint(a.geom, 0.5), b.geom) geom FROM line_incoherence a JOIN linecut b ON a.id=b.id GROUP BY a.id, a.geom, b.geom ORDER BY id), 
-	tranaectline2 AS (SELECT id, ST_Rotate(ST_Collect(geom), -pi(), ST_EndPoint(geom)) geom FROM tranaectline1 GROUP BY id, geom)
-        SELECT ST_Union(geom) geom FROM (SELECT geom FROM tranaectline1 UNION SELECT geom FROM tranaectline2) foo;
+	line_incoherence AS (SELECT a.id, ST_MakeLine(ST_StartPoint(a.geom), ST_EndPoint(b.geom)) geom FROM tr1 a JOIN tr2 b ON true AND a.id=b.id), 
+	int_pnt AS (SELECT a.id, ST_ShortestLine(ST_LineInterpolatePoint(a.geom, 0.5), b.geom) geom FROM line_incoherence a JOIN linecut b ON a.id=b.id GROUP BY a.id, a.geom, b.geom ORDER BY id), 
+	transectline AS (SELECT id, ST_Rotate(ST_Collect(geom), -pi(), ST_EndPoint(geom)) geom FROM int_pnt GROUP BY id, geom)
+        SELECT ST_Union(geom) geom FROM (SELECT geom FROM int_pnt UNION SELECT geom FROM transectline) foo;
 $BODY$
 LANGUAGE SQL
 

@@ -5,7 +5,7 @@ DROP FUNCTION IF EXISTS ST_VoronoiDiagramsFromPolygons(
 CREATE OR REPLACE FUNCTION ST_VoronoiDiagramsFromPolygons(
    geom GEOMETRY,
    n integer)
-RETURNS TABLE (geom GEOMETRY) AS  
+RETURNS GEOMETRY AS  
 $BODY$
 WITH
       in_geodata AS (SELECT (ST_Dump($1)).geom geom),

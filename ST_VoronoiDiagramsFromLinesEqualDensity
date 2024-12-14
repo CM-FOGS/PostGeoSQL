@@ -1,0 +1,21 @@
+DROP FUNCTION ST_VoronoiDiagramsFromLinesEqualDensity(
+     geom GEOMETRY, 
+     n integer)
+
+CREATE OR REPLACE FUNCTION ST_VoronoiDiagramsFromLinesEqualDensity(
+     geom GEOMETRY, 
+     n integer)
+RETURNS GEOMETRY AS  
+$BODY$ 
+WITH
+geodata AS (SELECT row_number() over() AS id, (ST_Dump($1)).geom geom),
+linecut AS (SELECT id, ST_LineSubstring(d.geom, substart, CASE WHEN subend > 1 THEN 1 ELSE subend END) geom FROM (SELECT id, geom, ST_Length(((geom)::geometry)) len, $2 sublen FROM geodata) AS d CROSS JOIN LATERAL (SELECT i,  (sublen * i)/len AS substart, (sublen * (i+1))/len AS subend
+FROM generate_series(0, floor(d.len/sublen)::integer) AS t(i) WHERE (sublen * i)/len <> 1.0) AS d2),
+dumppnt  AS (SELECT id, (ST_DumpPoints(geom)).geom geom FROM linecut GROUP BY id, geom),
+voronoi AS (SELECT (ST_Dump(ST_VoronoiPolygons(ST_Collect(geom)))).geom geom FROM dumppnt),
+voronoi_poly AS (SELECT ST_Union(a.geom) geom FROM voronoi a JOIN geodata b ON ST_Intersects(a.geom, b.geom) GROUP BY b.geom)
+SELECT ST_Collect(geom) geom FROM voronoi_poly;
+$BODY$
+LANGUAGE SQL
+
+SELECT ST_VoronoiDiagramsFromLinesEqualDensity(ST_Collect(geom),1) geom FROM <line_table>

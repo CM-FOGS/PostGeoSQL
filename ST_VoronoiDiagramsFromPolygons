@@ -8,13 +8,13 @@ CREATE OR REPLACE FUNCTION ST_VoronoiDiagramsFromPolygons(
 RETURNS TABLE (geom GEOMETRY) AS  
 $BODY$
 WITH
-in_geodata AS (SELECT (ST_Dump($1)).geom geom),
-exter AS (SELECT ST_ExteriorRing((ST_Dump(geom)).geom) geom FROM in_geodata GROUP BY geom),
-gen_ser AS (SELECT generate_series (0, n) as steps),
-int_pnts AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM gen_ser)) geom FROM exter, gen_ser GROUP BY stp, gen_ser.steps, geom),
-voronoi AS (SELECT ST_MakeValid((ST_Dump(ST_VoronoiPolygons(ST_Collect(geom)))).geom) geom FROM int_pnts),
-voronoi_poly AS (SELECT ST_Union(a.geom) geom FROM voronoi a JOIN in_geodata b ON ST_Intersects(a.geom, b.geom) GROUP BY b.geom)
-SELECT ST_Collect(geom) geom FROM voronoi_poly;
+      in_geodata AS (SELECT (ST_Dump($1)).geom geom),
+      exter_line AS (SELECT ST_ExteriorRing((ST_Dump(geom)).geom) geom FROM in_geodata GROUP BY geom),
+      gen_ser AS (SELECT generate_series (0, n) as steps),
+      int_pnts AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM gen_ser)) geom FROM exter_line, gen_ser GROUP BY stp, gen_ser.steps, geom),
+      voronoi AS (SELECT ST_MakeValid((ST_Dump(ST_VoronoiPolygons(ST_Collect(geom)))).geom) geom FROM int_pnts),
+      voronoi_poly AS (SELECT ST_Union(a.geom) geom FROM voronoi a JOIN in_geodata b ON ST_Intersects(a.geom, b.geom) GROUP BY b.geom)
+	   SELECT ST_Collect(geom) geom FROM voronoi_poly;
 $BODY$
 LANGUAGE SQL
 

@@ -13,7 +13,7 @@ $BODY$
          lineinterpnt AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM intervals)) geom FROM geodata, intervals GROUP BY intervals.steps, geom),
          voronoi AS (SELECT ((ST_Dump(ST_VoronoiPolygons(ST_Collect(geom)))).geom) geom FROM lineinterpnt),
          voronoi_poly AS (SELECT ST_Union(a.geom) geom FROM voronoi a JOIN geodata b ON ST_Intersects(a.geom, b.geom) GROUP BY b.geom)
-	    SELECT ST_Collect(geom) geom FROM voronoi_poly;
+	 SELECT ST_Collect(geom) geom FROM voronoi_poly;
 $BODY$
 LANGUAGE SQL
 

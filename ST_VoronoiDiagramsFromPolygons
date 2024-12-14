@@ -18,4 +18,4 @@ SELECT ST_Collect(geom) geom FROM voronoi_poly;
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_VoronoiDiagramsFromPolygons(ST_Union(geom), 100) geom FROM <polygon_table>
+SELECT ST_VoronoiDiagramsFromPolygons(ST_Collect(geom), 100) geom FROM <polygon_table>

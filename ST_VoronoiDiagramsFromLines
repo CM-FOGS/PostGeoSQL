@@ -9,7 +9,7 @@ RETURNS GEOMETRY AS
 $BODY$  
      WITH
          geodata AS (SELECT (ST_Dump($1)).geom geom),
-         intervals AS (SELECT generate_series (0, n) steps),
+         intervals AS (SELECT generate_series (0, $2) steps),
          lineinterpnt AS (SELECT steps AS stp, ST_LineInterpolatePoint(geom, steps/(SELECT count(steps)::float-1 FROM intervals)) geom FROM geodata, intervals GROUP BY intervals.steps, geom),
          voronoi AS (SELECT ((ST_Dump(ST_VoronoiPolygons(ST_Collect(geom)))).geom) geom FROM lineinterpnt),
          voronoi_poly AS (SELECT ST_Union(a.geom) geom FROM voronoi a JOIN geodata b ON ST_Intersects(a.geom, b.geom) GROUP BY b.geom)

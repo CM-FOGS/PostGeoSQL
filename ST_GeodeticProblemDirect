@@ -1,9 +1,9 @@
-DROP FUNCTION IF EXISTS ST_GeodeticProblemDirect(
+DROP FUNCTION IF EXISTS ST_GeodesicProblemStraightInPlane(
     geom GEOMETRY,
     distance float,
     direct_degree double precision)
 
-CREATE OR REPLACE FUNCTION ST_GeodeticProblemDirect(
+CREATE OR REPLACE FUNCTION ST_GeodesicProblemStraightInPlane(
     geom GEOMETRY,
     distance float,
     direct_degree double precision)
@@ -13,4 +13,4 @@ SELECT ST_Point(ST_X($1) + $2 * COSD($3), ST_Y($1) + $2 * SIND($3))
 $BODY$
 LANGUAGE SQL
 
-SELECT ST_SetSrid(ST_GeodeticProblemDirect(geom, 10000, 90),0) geom FROM (SELECT ST_Point(0, 0) geom) foo
+SELECT ST_SetSrid(ST_GeodesicProblemStraightInPlane(geom, 10000, 90),0) geom FROM (SELECT ST_Point(0, 0) geom) foo

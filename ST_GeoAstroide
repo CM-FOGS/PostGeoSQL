@@ -1,14 +1,14 @@
 DROP FUNCTION ST_GeoAstroide(
 geom GEOMETRY,
 distance float,
-npts bigint,
+direction_degrees_npts bigint,
 numerator_exponentiation integer,
 denominator_exponentiation integer)
 	
 CREATE OR REPLACE FUNCTION ST_GeoAstroide(
 geom GEOMETRY,
 distance float,
-npts bigint,
+direction_degrees_npts bigint,
 numerator_exponentiation integer,
 denominator_exponentiation integer)
 RETURNS GEOMETRY AS 

@@ -22,4 +22,4 @@ LANGUAGE SQL
 SELECT ST_SetSrid(ST_MakeLine(ST_TransformedGeoAstroide(geom, 1, i, 1, 1, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i) UNION 
 SELECT ST_SetSrid(ST_MakeLine(ST_TransformedGeoAstroide(geom, 1, i, 3, 1, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i)$ 
 
-*Сlassical Astroide in Сircle, Experimental function*
+*Сlassic Astroide in Сircle, Experimental function*

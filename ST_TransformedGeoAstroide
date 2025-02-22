@@ -15,11 +15,11 @@ numerator_exponentiation integer,
 denominator_exponentiation integer)
 RETURNS GEOMETRY AS 
 $BODY$
-SELECT ST_Point(ST_X($1)+$2*(SIND($3)^$4)^$5/$6, ST_Y($1)+$2*(COSD($3)^$4)^$5/$6);
+SELECT ST_Point(ST_X($1)+$2*(COSD($3)^$4)^$5/$6, ST_Y($1)+$2*(SIND($3)^$4)^$5/$6);
 $BODY$
 LANGUAGE SQL
 
 SELECT ST_SetSrid(ST_MakeLine(ST_TransformedGeoAstroide(geom, 1, i, 1, 1, 1)),0) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i) UNION 
 SELECT ST_SetSrid(ST_MakeLine(ST_TransformedGeoAstroide(geom, 1, i, 3, 1, 1)),0) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i); 
 
-*Experimental function, use for projected coordinate systems*
+*Experimental function*

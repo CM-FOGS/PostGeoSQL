@@ -2,19 +2,19 @@ DROP FUNCTION ST_TransformedGeoAstroide(
 geom GEOMETRY,
 distance float,
 direction_degrees_npts bigint,
-onumerator_exponentiation integer,
-odenominator_exponentiation integer,
-tnumerator_exponentiation integer,
-tdenominator_exponentiation integer)
+first_numerator_exponentiation integer,
+first_denominator_exponentiation integer,
+second_numerator_exponentiation integer,
+second_denominator_exponentiation integer)
 	
 CREATE OR REPLACE FUNCTION ST_TransformedGeoAstroide(
 geom GEOMETRY,
 distance float,
 direction_degrees_npts bigint,
-onumerator_exponentiation integer,
-odenominator_exponentiation integer,
-tnumerator_exponentiation integer,
-tdenominator_exponentiation integer)
+first_numerator_exponentiation integer,
+first_denominator_exponentiation integer,
+second_numerator_exponentiation integer,
+second_denominator_exponentiation integer)
 RETURNS GEOMETRY AS 
 $BODY$
 SELECT ST_Point(ST_X($1)+$2*(COSD($3)^$4/$5)^$6/$7, ST_Y($1)+$2*(SIND($3)^$4/$5)^$6/$7);

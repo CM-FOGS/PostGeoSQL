@@ -1,0 +1,27 @@
+DROP FUNCTION ST_GeoAstroideFractionalDegree(
+geom GEOMETRY,
+distance float,
+direction_degrees_npts bigint,
+first_numerator_exponentiation integer,
+first_denominator_exponentiation integer,
+second_numerator_exponentiation integer,
+second_denominator_exponentiation integer)
+	
+CREATE OR REPLACE FUNCTION ST_GeoAstroideFractionalDegree(
+geom GEOMETRY,
+distance float,
+direction_degrees_npts bigint,
+first_numerator_exponentiation integer,
+first_denominator_exponentiation integer,
+second_numerator_exponentiation integer,
+second_denominator_exponentiation integer)
+RETURNS GEOMETRY AS 
+$BODY$
+SELECT ST_Point(ST_X($1)+$2*COSD($3)^$4/$5, ST_Y($1)+$2*SIND($3)^$6/$7);
+$BODY$
+LANGUAGE SQL
+
+SELECT ST_SetSrid(ST_MakeLine(ST_GeoAstroideFractionalDegree(geom, 1, i, 1, 1, 1, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i) UNION 
+SELECT ST_SetSrid(ST_MakeLine(ST_GeoAstroideFractionalDegree(geom, 1, i, 3, 1, 3, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i) 
+
+*experimental function for plotting curved lines*

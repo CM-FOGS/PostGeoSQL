@@ -1,7 +1,7 @@
 DROP FUNCTION ST_GeoAstroideFractionalDegree(
 geom GEOMETRY,
 distance float,
-direction_degrees_npts bigint,
+direction_degrees_npts numeric,
 first_numerator_exponentiation numeric,
 first_denominator_exponentiation numeric,
 second_numerator_exponentiation numeric,
@@ -10,7 +10,7 @@ second_denominator_exponentiation numeric)
 CREATE OR REPLACE FUNCTION ST_GeoAstroideFractionalDegree(
 geom GEOMETRY,
 distance float,
-direction_degrees_npts bigint,
+direction_degrees_npts numeric,
 first_numerator_exponentiation numeric,
 first_denominator_exponentiation numeric,
 second_numerator_exponentiation numeric,

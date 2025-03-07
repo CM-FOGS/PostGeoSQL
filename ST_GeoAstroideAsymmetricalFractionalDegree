@@ -1,28 +1,28 @@
 DROP FUNCTION ST_GeoAstroideAsymmetricalFractionalDegree(
 geom GEOMETRY,
 distance float,
-direction_degrees_npts bigint,
-first_numerator_exponentiation integer,
-first_denominator_exponentiation integer,
-second_numerator_exponentiation integer,
-second_denominator_exponentiation integer,
-third_numerator_exponentiation integer,
-third_denominator_exponentiation integer,
-fourth_numerator_exponentiation integer,
-fourth_denominator_exponentiation integer)
+direction_degrees_npts numeric,
+first_numerator_exponentiation numeric,
+first_denominator_exponentiation numeric,
+second_numerator_exponentiation numeric,
+second_denominator_exponentiation numeric,
+third_numerator_exponentiation numeric,
+third_denominator_exponentiation numeric,
+fourth_numerator_exponentiation numeric,
+fourth_denominator_exponentiation numeric)
 	
 CREATE OR REPLACE FUNCTION ST_GeoAstroideAsymmetricalFractionalDegree(
 geom GEOMETRY,
 distance float,
-direction_degrees_npts bigint,
-first_numerator_exponentiation integer,
-first_denominator_exponentiation integer,
-second_numerator_exponentiation integer,
-second_denominator_exponentiation integer,
-third_numerator_exponentiation integer,
-third_denominator_exponentiation integer,
-fourth_numerator_exponentiation integer,
-fourth_denominator_exponentiation integer)
+direction_degrees_npts numeric,
+first_numerator_exponentiation numeric,
+first_denominator_exponentiation numeric,
+second_numerator_exponentiation numeric,
+second_denominator_exponentiation numeric,
+third_numerator_exponentiation numeric,
+third_denominator_exponentiation numeric,
+fourth_numerator_exponentiation numeric,
+fourth_denominator_exponentiation numeric)
 RETURNS GEOMETRY AS 
 $BODY$
 SELECT ST_Point(ST_X($1)+$2*(COSD($3)^$4/$5)^$6/$7, ST_Y($1)+$2*(SIND($3)^$8/$9)^$10/$11);

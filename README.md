@@ -78,3 +78,4 @@ Links to published SQL/GeoSQL functions on the Q&A website:
 22) ST_RoadAxis - https://gis.stackexchange.com/a/340590/120129;
 23) generate_numbers_interval_as_descending_order, generate_numbers_interval_des_ascending_order, generate_numbers_notnull_dupl_border_interval_ascending_order, generate_identical_numbers_notnull_interval_ascending_order - https://dba.stackexchange.com/a/337260/222586; https://dba.stackexchange.com/a/337294/222586;
 24) ST_BufferClusteringRequiredDistance - https://gis.stackexchange.com/a/312261/120129;
+25) ST_GeoAstroide - https://gis.stackexchange.com/questions/415884/how-to-create-a-classic-sand-snail-using-postgresql-postgis;

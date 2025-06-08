@@ -20,8 +20,8 @@ second_denominator_exponentiation numeric)
 RETURNS GEOMETRY AS 
 $BODY$
 SELECT ST_MakePoint(ST_X($1)+$2*(SIND($3)*COSD($4))^$5/$6, 
-				ST_Y($1)+$2*(SIND($3)*SIND($4))^$7/$8,
-				ST_Z($1)+$2*COSD($3));
+ST_Y($1)+$2*(SIND($3)*SIND($4))^$7/$8,
+ST_Z($1)+$2*COSD($3));
 $BODY$
 LANGUAGE SQL
 

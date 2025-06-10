@@ -25,5 +25,12 @@ ST_Z($1)+$2*COSD($3));
 $BODY$
 LANGUAGE SQL
 
+1) 3D_circle:
 SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_GeoAstroide_3D(geom, 1, i, 1, 1, 1, 1, 1)),4326)) geom 
-FROM (SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo
+FROM (SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo;
+
+2) 3D_spiral:
+SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_GeoAstroide_3D(geom, 1*i*0.00277777654321, i, 1, 1, 1, 1, 1)),4326)) geom 
+FROM (SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360*3) i) foo;
+
+3)...∞

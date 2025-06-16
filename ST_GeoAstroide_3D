@@ -36,4 +36,4 @@ FROM (SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360*3) i) foo;
 3)...∞
 
 * Note 
-To visualize the result of building ST_Astroide_3D() function it is necessary to use PostGIS ST_AsX3D() function. The link to an example of its use is located at - https://postgis.net/docs/ST_AsX3D.html.
+To visualize the result of building ST_Astroide_3D() function it is necessary to use PostGIS ST_AsX3D() function. The link to an example of its use is located at - https://postgis.net/docs/ST_AsX3D.html

@@ -1,8 +1,8 @@
-Mysterious free international research project, which is an extensible library of geospatial functions working in all DBMSs supporting CTE (Common Table Expressions) query types and having spatial extension, for example: PostgreSQL/PostGIS, SQLite/SpatiaLite and similar.
+Mysterious free international research project, which is an extensible library of geospatial functions working in all SQL-like object-relational database management systems supporting CTE (Common Table Expressions) query types and having spatial extension, for example: PostgreSQL/PostGIS, SQLite/SpatiaLite and similar.
 
 Programming language - SQL.
 
-Instructions for installing, verifying the creation, operation and deletion of the function by the example of PostgreSQL/PostGIS DBMS and pgAdmin application.
+Instructions for installing, verifying the creation, operation and deletion of the function by the example of PostgreSQL/PostGIS RDBMS and pgAdmin application.
 
 1. The following software must be installed on the PC, laptop or JVM to work with the function library: PostgreSQL, PostGIS and pgAdmin.
 

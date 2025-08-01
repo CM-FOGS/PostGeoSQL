@@ -1,0 +1,30 @@
+DROP FUNCTION ST_GeoAstroide_mod(
+geom GEOMETRY,
+distance float,
+direction_degrees_npts numeric,
+first_numerator_exponentiation numeric,
+first_denominator_exponentiation numeric,
+second_numerator_exponentiation numeric,
+second_denominator_exponentiation numeric)
+	
+CREATE OR REPLACE FUNCTION ST_GeoAstroide_mod(
+geom GEOMETRY,
+distance float,
+direction_degrees_npts numeric,
+first_numerator_exponentiation numeric,
+first_denominator_exponentiation numeric,
+second_numerator_exponentiation numeric,
+second_denominator_exponentiation numeric)
+RETURNS GEOMETRY AS 
+$BODY$
+SELECT ST_Point(ST_X($1)+$2*COSD($3)^$4*$5, ST_Y($1)+$2*SIND($3)^$6*$7);
+$BODY$
+LANGUAGE SQL
+
+SELECT ST_SetSrid(ST_MakeLine(ST_GeoAstroide_mod(geom, 1, i, 0, 1, 1, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i) UNION 
+SELECT ST_SetSrid(ST_MakeLine(ST_GeoAstroide_mod(geom, -1, i, 0, 1, 1, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i) UNION 
+SELECT ST_SetSrid(ST_MakeLine(ST_GeoAstroide_mod(geom, 1, i, 1, 1, 0, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i) UNION 
+SELECT ST_SetSrid(ST_MakeLine(ST_GeoAstroide_mod(geom, -1, i, 1, 1, 0, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i) UNION 
+SELECT ST_SetSrid(ST_MakeLine(ST_GeoAstroide_mod(geom, 1, i, 1, 1, 1, 0)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i) UNION 
+SELECT ST_SetSrid(ST_MakeLine(ST_GeoAstroide_mod(geom, 1, i, 1, 0, 1, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i) UNION
+SELECT ST_SetSrid(ST_MakeLine(ST_GeoAstroide_mod(geom, 1, i, 1, 1, 1, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN LATERAL generate_series (0,360) AS step(i)

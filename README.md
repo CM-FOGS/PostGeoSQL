@@ -1,4 +1,4 @@
-Mysterious free international research project, which is an extensible library of geospatial functions working in all SQL-like object-relational database management systems supporting CTE (Common Table Expressions) query types and having spatial extension, for example: PostgreSQL/PostGIS, SQLite/SpatiaLite and similar.
+Free international research project, which is an extensible library of geospatial functions working in all SQL-like object-relational database management systems supporting CTE (Common Table Expressions) query types and having spatial extension, for example: PostgreSQL/PostGIS, SQLite/SpatiaLite and similar.
 
 Programming language - SQL.
 
@@ -66,16 +66,15 @@ Links to published SQL/GeoSQL functions on the Q&A website:
 10) ST_MaxDistanceWestEastIRRegularPolygon - https://gis.stackexchange.com/a/418891/120129;
 11) ST_SnapPolygonToLine - https://gis.stackexchange.com/a/408355/120129;
 12) ST_MergingTwoIsolinesOneAverage - https://gis.stackexchange.com/a/375525/120129;
-13) ST_BambooBuffer - https://gis.stackexchange.com/a/309043/120129;
-14) ST_CentroidOnSurface_v1,  ST_CentroidOnSurface_v2 - https://gis.stackexchange.com/a/372944/120129;
-15) ST_MaximumAreaInscribedRectangleInPolygon - https://gis.stackexchange.com/a/368504/120129; https://gis.stackexchange.com/a/475627/120129;
-16) ST_CentraLAxisLongestLineFromVoronoiDiagrams - https://gis.stackexchange.com/a/411894/120129;
-17) ST_SmoothingPolygonsNotchesInternalVertices - https://gis.stackexchange.com/a/467857/120129;
-18) ST_SamplingLargePolygonsByDoubleBufferization, ST_SamplingSmallPolygonsByDoubleBufferization - https://gis.stackexchange.com/a/316212/120129;
-19) ST_CarvesPolygons - https://gis.stackexchange.com/a/333562/120129; https://gis.stackexchange.com/a/302470/120129;
-20) ST_SmoothedToothedPolygonExternal, ST_SmoothedToothedPolygonInternal - https://gis.stackexchange.com/a/429894/120129;
-21) ST_ExtractionExternalGridCells, ST_ExtractionExternalGridCellsByDoubleBufferization  - https://gis.stackexchange.com/a/350076/120129;
-22) ST_RoadAxis - https://gis.stackexchange.com/a/340590/120129;
-23) generate_numbers_interval_as_descending_order, generate_numbers_interval_des_ascending_order, generate_numbers_notnull_dupl_border_interval_ascending_order, generate_identical_numbers_notnull_interval_ascending_order - https://dba.stackexchange.com/a/337260/222586; https://dba.stackexchange.com/a/337294/222586;
-24) ST_BufferClusteringRequiredDistance - https://gis.stackexchange.com/a/312261/120129;
-25) ST_GeoAstroide - https://gis.stackexchange.com/a/492258/120129;
+13) ST_CentroidOnSurface_v1,  ST_CentroidOnSurface_v2 - https://gis.stackexchange.com/a/372944/120129;
+14) ST_MaximumAreaInscribedRectangleInPolygon - https://gis.stackexchange.com/a/368504/120129; https://gis.stackexchange.com/a/475627/120129;
+15) ST_CentraLAxisLongestLineFromVoronoiDiagrams - https://gis.stackexchange.com/a/411894/120129;
+16) ST_SmoothingPolygonsNotchesInternalVertices - https://gis.stackexchange.com/a/467857/120129;
+17) ST_SamplingLargePolygonsByDoubleBufferization, ST_SamplingSmallPolygonsByDoubleBufferization - https://gis.stackexchange.com/a/316212/120129;
+18) ST_CarvesPolygons - https://gis.stackexchange.com/a/333562/120129; https://gis.stackexchange.com/a/302470/120129;
+19) ST_SmoothedToothedPolygonExternal, ST_SmoothedToothedPolygonInternal - https://gis.stackexchange.com/a/429894/120129;
+20) ST_ExtractionExternalGridCells, ST_ExtractionExternalGridCellsByDoubleBufferization  - https://gis.stackexchange.com/a/350076/120129;
+21) ST_RoadAxis - https://gis.stackexchange.com/a/340590/120129;
+22) generate_numbers_interval_as_descending_order, generate_numbers_interval_des_ascending_order, generate_numbers_notnull_dupl_border_interval_ascending_order, generate_identical_numbers_notnull_interval_ascending_order - https://dba.stackexchange.com/a/337260/222586; https://dba.stackexchange.com/a/337294/222586;
+23) ST_BufferClusteringRequiredDistance - https://gis.stackexchange.com/a/312261/120129;
+24) ST_GeoAstroide - https://gis.stackexchange.com/a/492258/120129;

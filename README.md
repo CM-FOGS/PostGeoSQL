@@ -74,7 +74,10 @@ Links to published SQL/GeoSQL functions on the Q&A website:
 18) ST_CarvesPolygons - https://gis.stackexchange.com/a/333562/120129; https://gis.stackexchange.com/a/302470/120129;
 19) ST_SmoothedToothedPolygonExternal, ST_SmoothedToothedPolygonInternal - https://gis.stackexchange.com/a/429894/120129;
 20) ST_ExtractionExternalGridCells, ST_ExtractionExternalGridCellsByDoubleBufferization  - https://gis.stackexchange.com/a/350076/120129;
-21) ST_RoadAxis - https://gis.stackexchange.com/a/340590/120129;
-22) generate_numbers_interval_as_descending_order, generate_numbers_interval_des_ascending_order, generate_numbers_notnull_dupl_border_interval_ascending_order, generate_identical_numbers_notnull_interval_ascending_order - https://dba.stackexchange.com/a/337260/222586; https://dba.stackexchange.com/a/337294/222586;
-23) ST_BufferClusteringRequiredDistance - https://gis.stackexchange.com/a/312261/120129;
-24) ST_GeoAstroide - https://gis.stackexchange.com/a/492258/120129;
+21) ST_RoadAxis - https://gis.stackexchange.com/a/340590/120129;  
+23) generate_numbers_interval_as_descending_order, generate_numbers_interval_des_ascending_order, generate_numbers_notnull_dupl_border_interval_ascending_order, generate_identical_numbers_notnull_interval_ascending_order - https://dba.stackexchange.com/a/337260/222586; https://dba.stackexchange.com/a/337294/222586;
+24) ST_BufferClusteringRequiredDistance - https://gis.stackexchange.com/a/312261/120129;
+25) ST_GeoAstroide - https://gis.stackexchange.com/a/492258/120129;
+
+
+e-mail: geomaptechnology@gmail.com

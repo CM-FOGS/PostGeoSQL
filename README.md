@@ -77,7 +77,8 @@ Links to published SQL/GeoSQL functions on the Q&A website:
 21) ST_RoadAxis - https://gis.stackexchange.com/a/340590/120129;  
 23) generate_numbers_interval_as_descending_order, generate_numbers_interval_des_ascending_order, generate_numbers_notnull_dupl_border_interval_ascending_order, generate_identical_numbers_notnull_interval_ascending_order - https://dba.stackexchange.com/a/337260/222586; https://dba.stackexchange.com/a/337294/222586;
 24) ST_BufferClusteringRequiredDistance - https://gis.stackexchange.com/a/312261/120129;
-25) ST_GeoAstroide - https://gis.stackexchange.com/a/492258/120129;
+26) ST_GeoAstroide - https://gis.stackexchange.com/a/492258/120129;
+27) ST_DissolvePolygonsByNumericalValues - https://gis.stackexchange.com/a/495597/120129;
 
 
 e-mail: geomaptechnology@gmail.com

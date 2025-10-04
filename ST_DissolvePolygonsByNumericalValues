@@ -14,4 +14,6 @@ SELECT numeric_value, ST_Union(geom) geom FROM tblb GROUP BY numeric_value;
 $BODY$
 LANGUAGE SQL
 
-SELECT (ST_DissolvePolygonsByNumericalValues(numeric_value, ST_Union(geom))).* FROM <table_name> 
+SELECT (ST_DissolvePolygonsByNumericalValues(numeric_value, ST_Union(geom))).* FROM <table_name> GROUP BY numeric_value
+OR
+SELECT array_agg(id) as ids, (ST_DissolvePolygonsByNumericalValues(numeric_value, ST_Union(geom))).* FROM <table_name> GROUP BY numeric_value

@@ -1,4 +1,4 @@
-DROP FUNCTION IF EXISTS ST_DissolvePolygonsByNumericalValues(
+DROP FUNCTION IF EXISTS ST_DissolvePolygonsByTextValues(
 text_value character varying,
 geom GEOMETRY)
 

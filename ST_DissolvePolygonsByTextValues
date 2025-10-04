@@ -1,0 +1,19 @@
+DROP FUNCTION IF EXISTS ST_DissolvePolygonsByNumericalValues(
+text_value character varying,
+geom GEOMETRY)
+
+CREATE OR REPLACE FUNCTION ST_DissolvePolygonsByTextValues(
+text_value character varying,
+geom GEOMETRY)
+RETURNS TABLE (text_value character varying, geom GEOMETRY) AS
+$BODY$
+WITH
+tbla AS (SELECT),
+tblb AS (SELECT ST_Polygonize(ST_Boundary(geom)) geom FROM tbla GROUP BY text_value)
+SELECT text_value, ST_Union(geom) geom FROM tblb GROUP BY text_value;
+$BODY$
+LANGUAGE SQL
+
+SELECT array_agg(id) as ids, (ST_DissolvePolygonsByTextValues(text_value, ST_Union(geom))).* FROM <table_name> GROUP BY text_value
+
+*Reminder* Check the data type; it is possible to explicitly convert to the required type or create a function variant with the required data type

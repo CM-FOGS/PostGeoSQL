@@ -9,5 +9,5 @@ tblc1 AS (SELECT a.geom, b.num FROM tbla1 a JOIN tblb1 b ON true AND a.gid=b.one
 SELECT * FROM tblc UNION SELECT * FROM tblc1 ORDER BY num, geom;
 
 The author and developer of the function ST_CreateFishnet() is © Michael W.Towes
-(https://gis.stackexchange.com/a/16390; https://trac.osgeo.org/postgis/wiki/UsersWikiCreateFishnet)
+(https://gis.stackexchange.com/a/16390; https://trac.osgeo.org/postgis/wiki/UsersWikiCreateFishnet; github.com/mwtoews)
 *experimental*

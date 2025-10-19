@@ -51,7 +51,9 @@ The authors and developers of the functions body used in the project is:
 
 © Erwin Brandstetter https://dba.stackexchange.com/users/3684/erwin-brandstetter;
 
-© mustaccio https://dba.stackexchange.com/users/23721/mustaccio.
+© mustaccio https://dba.stackexchange.com/users/23721/mustaccio;
+
+© Michael W.Towes github.com/mwtoews.
 
 Links to published SQL/GeoSQL functions on the Q&A website:
 1) ST_VoronoiDiagramsFromPolygons - https://gis.stackexchange.com/a/318112/120129;

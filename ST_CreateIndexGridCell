@@ -6,18 +6,18 @@ tblb_col AS (SELECT row_number() over() ord, (ARRAY['A-','B-','C-','D-'])[((n-1)
 tbla_row AS (SELECT * FROM grid WHERE row IN (SELECT generate_series(1,1,1))),
 tblb_row AS (SELECT row_number() over() ord, (ARRAY[1,2,3,4])[((n-1)%4)+1] num FROM generate_series(1,40) as n),
 tblc AS (SELECT a.ord, b.lett, a.num FROM tblb_row a JOIN tblb_col b ON true AND a.ord=b.ord)
-SELECT concat(b.lett, b.num) grid_index, a.geom FROM tbla_row a JOIN tblc b ON true AND a.gid=b.ord;
+SELECT concat(b.lett, b.num) cell_index, a.geom FROM tbla_row a JOIN tblc b ON true AND a.gid=b.ord;
 
 Example 2
 WITH
 grid AS (SELECT row_number() over() as gid, row, col, ST_SetSrid(geom, 4326) geom FROM ST_CreateFishnet(2,40,9,4,-180,72)),
 tbla AS (SELECT * FROM grid WHERE row IN (SELECT generate_series(1,1,1))),
-tblb AS (SELECT row_number() over() ord, (ARRAY[5,6,7,8])[((n-1)%4)+1] grid_index FROM generate_series(1,80) as n),
-tblc AS (SELECT b.grid_index, a.geom FROM tbla a JOIN tblb b ON true AND a.gid=b.ord),
+tblb AS (SELECT row_number() over() ord, (ARRAY[5,6,7,8])[((n-1)%4)+1] cell_index FROM generate_series(1,80) as n),
+tblc AS (SELECT b.cell_index, a.geom FROM tbla a JOIN tblb b ON true AND a.gid=b.ord),
 tbla1 AS (SELECT * FROM grid WHERE row IN (SELECT generate_series(2,2,2))),
-tblb1 AS (SELECT row_number() over() ord, (ARRAY[1,2,3,4])[((n-1)%4)+1] grid_index FROM generate_series(1,80) as n),
-tblc1 AS (SELECT b.grid_index, a.geom FROM tbla1 a JOIN tblb1 b ON true AND a.gid=b.ord)
-SELECT * FROM tblc UNION SELECT * FROM tblc1 ORDER BY grid_index, geom;
+tblb1 AS (SELECT row_number() over() ord, (ARRAY[1,2,3,4])[((n-1)%4)+1] cell_index FROM generate_series(1,80) as n),
+tblc1 AS (SELECT b.cell_index, a.geom FROM tbla1 a JOIN tblb1 b ON true AND a.gid=b.ord)
+SELECT * FROM tblc UNION SELECT * FROM tblc1 ORDER BY cell_index, geom;
 
 The author and developer of the function ST_CreateFishnet() is © Michael W.Towes
 (https://gis.stackexchange.com/a/16390; https://trac.osgeo.org/postgis/wiki/UsersWikiCreateFishnet; github.com/mwtoews)

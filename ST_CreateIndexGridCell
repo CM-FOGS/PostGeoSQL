@@ -1,20 +1,20 @@
 Example 1
 WITH
-grids AS (SELECT row_number() over() as gid, row, col, ST_SetSrid(geom, 4326) geom FROM ST_CreateFishnet(1,40,9,4,-180,72)),
-tbla_col AS (SELECT * FROM grids WHERE col IN (SELECT generate_series(1,40,1))),
+grid AS (SELECT row_number() over() as gid, row, col, ST_SetSrid(geom, 4326) geom FROM ST_CreateFishnet(1,40,9,4,-180,72)),
+tbla_col AS (SELECT * FROM grid WHERE col IN (SELECT generate_series(1,40,1))),
 tblb_col AS (SELECT row_number() over() ord, (ARRAY['A-','B-','C-','D-'])[((n-1)%4)+1] lett FROM generate_series(1,40,1) as n),
-tbla_row AS (SELECT * FROM grids WHERE row IN (SELECT generate_series(1,1,1))),
+tbla_row AS (SELECT * FROM grid WHERE row IN (SELECT generate_series(1,1,1))),
 tblb_row AS (SELECT row_number() over() ord, (ARRAY[1,2,3,4])[((n-1)%4)+1] num FROM generate_series(1,40) as n),
 tblc AS (SELECT a.ord, b.lett, a.num FROM tblb_row a JOIN tblb_col b ON true AND a.ord=b.ord)
-SELECT concat(b.lett, b.num) carto_index, a.geom FROM tbla_row a JOIN tblc b ON true AND a.gid=b.ord
+SELECT concat(b.lett, b.num) carto_index, a.geom FROM tbla_row a JOIN tblc b ON true AND a.gid=b.ord;
 
 Example 2
 WITH
-grids AS (SELECT row_number() over() as gid, row, col, ST_SetSrid(geom, 4326) geom FROM ST_CreateFishnet(2,40,9,4,-180,72)),
-tbla AS (SELECT * FROM grids WHERE row IN (SELECT generate_series(1,1,1))),
+grid AS (SELECT row_number() over() as gid, row, col, ST_SetSrid(geom, 4326) geom FROM ST_CreateFishnet(2,40,9,4,-180,72)),
+tbla AS (SELECT * FROM grid WHERE row IN (SELECT generate_series(1,1,1))),
 tblb AS (SELECT row_number() over() ord, (ARRAY[5,6,7,8])[((n-1)%4)+1] num FROM generate_series(1,80) as n),
 tblc AS (SELECT b.num, a.geom FROM tbla a JOIN tblb b ON true AND a.gid=b.ord),
-tbla1 AS (SELECT * FROM grids WHERE row IN (SELECT generate_series(2,2,2))),
+tbla1 AS (SELECT * FROM grid WHERE row IN (SELECT generate_series(2,2,2))),
 tblb1 AS (SELECT row_number() over() ord, (ARRAY[1,2,3,4])[((n-1)%4)+1] num FROM generate_series(1,80) as n),
 tblc1 AS (SELECT b.num, a.geom FROM tbla1 a JOIN tblb1 b ON true AND a.gid=b.ord)
 SELECT * FROM tblc UNION SELECT * FROM tblc1 ORDER BY num, geom;

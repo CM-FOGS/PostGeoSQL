@@ -22,4 +22,3 @@ SELECT * FROM tblc UNION SELECT * FROM tblc1 ORDER BY cell_index, geom;
 The author and developer of the function ST_CreateFishnet() is © Michael W.Towes
 (https://gis.stackexchange.com/a/16390; https://trac.osgeo.org/postgis/wiki/UsersWikiCreateFishnet; github.com/mwtoews)
 This function is for creating indexed electronic cartographic and non-cartographic grids
-*experimental*

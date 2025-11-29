@@ -1,0 +1,35 @@
+DROP FUNCTION IF EXISTS ST_GeoAstroide_3D_mode(
+geom GEOMETRY,
+distance float,
+direction_degrees_teta numeric,
+direction_degrees_fi numeric,	
+first_numerator_exponentiation numeric,
+first_denominator_exponentiation numeric,
+second_numerator_exponentiation numeric,
+second_denominator_exponentiation numeric,
+third_numerator_exponentiation numeric,
+third_denominator_exponentiation numeric)
+
+CREATE OR REPLACE FUNCTION ST_GeoAstroide_3D_mode(
+geom GEOMETRY,
+distance float,
+direction_degrees_teta numeric,
+direction_degrees_fi numeric,	
+first_numerator_exponentiation numeric,
+first_denominator_exponentiation numeric,
+second_numerator_exponentiation numeric,
+second_denominator_exponentiation numeric,
+third_numerator_exponentiation numeric,
+third_denominator_exponentiation numeric)
+RETURNS GEOMETRY AS 
+$BODY$
+SELECT ST_MakePoint((ST_X($1)+$2*(COSD($3)*SIND($4)))^$5*$6, 
+(ST_Y($1)+$2*(COSD($3)*COSD($4)))^$7*$8,
+(ST_Z($1)+$2*SIND($3))^$9*$10) 
+$BODY$
+LANGUAGE SQL
+
+SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_GeoAstroide_3D_mode(geom, 1, i, r, 1, 1, 1, 1, 1, 1)),4326)) geom FROM
+	(SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo CROSS JOIN LATERAL generate_series (0,360,10) r; 
+
+*experimental*

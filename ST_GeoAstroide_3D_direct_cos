@@ -29,9 +29,13 @@ SELECT ST_MakePoint((ST_X($1)+$2*(SIND($3)*COSD($4)))^$5*$6,
 $BODY$
 LANGUAGE SQL
 
-1) 3D_circle:
-SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_GeoAstroide_3D_direct_cos(geom, 1, i, 1, 1, 1, 1, 1, 1, 1)),4326)) geom 
-FROM (SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo;
+Example
+1) 3D_grid_circle:
+SELECT ST_ASText(ST_Collect(geom)) geom FROM (								 
+SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_GeoAstroide_3D_direct_cos(geom, 1, i, r, 1, 1, 1, 1, 1, 1)),4326)) geom FROM
+								 (SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo CROSS JOIN LATERAL generate_series (0,360,10) r UNION
+SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_GeoAstroide_3D_direct_cos(geom, 1, r, i, 1, 1, 1, 1, 1, 1)),4326)) geom FROM
+								 (SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo CROSS JOIN LATERAL generate_series (0,360,10) r) foo
 
 2) 3D_spiral:
 SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_GeoAstroide_3D_direct_cos(geom, 1*i*0.00277777654321, i, 1, 1, 1, 1, 1, 1, 1)),4326)) geom 

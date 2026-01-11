@@ -21,7 +21,7 @@ $BODY$
          tblc AS (SELECT ST_Translate(geom, 2*radius, 0) geom FROM tblb),
          tbld AS (SELECT * FROM tbla UNION SELECT * FROM tblc),
          tble AS (SELECT * FROM tbld UNION SELECT ST_Translate(geom, 2*i*radius, 0) geom FROM tbld CROSS JOIN LATERAL generate_series (1, quantity-1) AS step(i))
-                 SELECT ST_Union(geom) geom FROM tble;
+                 SELECT ST_LineMerge(ST_Collect(geom)) geom FROM tble;
 $BODY$
 LANGUAGE SQL
 

@@ -1,0 +1,46 @@
+DROP FUNCTION IF EXISTS
+ST_GeoAstroide_3D_CylindricalWavyLine(
+geom GEOMETRY,
+distance float,
+direction_degrees_teta numeric,
+direction_degrees_fi numeric,
+horizontal_rotation_angle numeric,
+vertical_rotation_angle numeric,
+first_numerator_exponentiation numeric,
+first_denominator_exponentiation numeric,
+second_numerator_exponentiation numeric,
+second_denominator_exponentiation numeric,
+third_numerator_exponentiation numeric,
+third_denominator_exponentiation numeric)
+
+CREATE OR REPLACE FUNCTION ST_GeoAstroide_3D_CylindricalWavyLine(
+geom GEOMETRY,
+distance float,
+direction_degrees_teta numeric,
+direction_degrees_fi numeric,
+horizontal_rotation_angle numeric,
+vertical_rotation_angle numeric,
+first_numerator_exponentiation numeric,
+first_denominator_exponentiation numeric,
+second_numerator_exponentiation numeric,
+second_denominator_exponentiation numeric,
+third_numerator_exponentiation numeric,
+third_denominator_exponentiation numeric)
+RETURNS GEOMETRY AS 
+$BODY$
+SELECT ST_MakePoint(
+ST_X($1)+$2*(COSD($3+$5))^$7*$8,
+ST_Y($1)+$2*(SIND($3+$5))^$9*$10,
+ST_Z($1)+$2*(COSD($3+$4)^$11*$12)
+);
+$BODY$
+LANGUAGE SQL
+
+Example
+SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_GeoAstroide_3D_CylindricalWavyLine(geom, 1, i, r, 0, 0, 3, 1, 3, 1, 1, 1)),4326)) geom FROM
+(SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo CROSS JOIN LATERAL generate_series (0,360,10) r
+
+*Experimental
+
+* Note 
+To visualize the result of building ST_GeoAstroide_3D() function it is necessary to use PostGIS ST_AsX3D() function. The link to an example of its use is located at - https://postgis.net/docs/ST_AsX3D.html

@@ -39,10 +39,12 @@ LANGUAGE SQL
 
 Example
 1) SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_GeoAstroide_3D_Transform(geom, exp(COSD(i))-2*COSD(4*i)+(SIND(i/12))^5/7, i, r, 0, 0, 0, 1, 1, 1, 1, 1, 1)),4326)) geom FROM
-(SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo CROSS JOIN LATERAL generate_series (0,360,10) r;
+(SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo CROSS JOIN generate_series (0,360,10) r;
 2) SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_GeoAstroide_3D_Transform(geom, SIND(3*i) , i, r, 0, 0, 0, 1, 1, 1, 1, 1, 1)),4326)) geom FROM
-(SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo CROSS JOIN LATERAL generate_series (0,360,10) r
+(SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo CROSS JOIN generate_series (0,360,10) r
 3) ...∞
+
+*Experimental*
 
 * Note 
 To visualize the result of building ST_GeoAstroide_3D() function it is necessary to use PostGIS ST_AsX3D() function. The link to an example of its use is located at - https://postgis.net/docs/ST_AsX3D.html

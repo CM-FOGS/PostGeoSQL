@@ -32,7 +32,7 @@ LANGUAGE SQL
 SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_GeoAstroide_3D_direct_sin(geom, 1, i, r, 1, 1, 1, 1, 1, 1)),4326)) geom FROM
 	(SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360) i) foo CROSS JOIN generate_series (0,360,10) r 
 
-*experimental*
+*Experimental function*
 
 * Note 
 To visualize the result of building ST_GeoAstroide_3D() function it is necessary to use PostGIS ST_AsX3D() function. The link to an example of its use is located at - https://postgis.net/docs/ST_AsX3D.html

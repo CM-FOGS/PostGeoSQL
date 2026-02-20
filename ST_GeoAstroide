@@ -33,7 +33,7 @@ SELECT ST_SetSRID(ST_MakeLine(ST_GeoAstroide(geom, 1*i*0.00277777654321, i, 3, 1
 5) Building a radial monotonically growing from 3 spirals -
 SELECT ST_SetSRID(ST_MakeLine(ST_GeoAstroide(geom, 1*i*0.00277777654321, i, 2, 1, 1, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN generate_series (0, 360*3) AS step(i);
 6) Building an ellipse as a line type -
-SELECT ST_SetSrid(ST_MakeLine(ST_GeoAstroide(geom, 0.00098816, i, 1, 1.5, 1, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN generate_series (0,360) AS step(i);
+SELECT ST_SetSrid(ST_MakeLine(ST_GeoAstroide(geom, 1, i, 1, 1.5, 1, 1)),4326) geom FROM (SELECT ST_Point(0, 0) geom) foo CROSS JOIN generate_series (0,360) AS step(i);
 7) ...
 
 Explanation:

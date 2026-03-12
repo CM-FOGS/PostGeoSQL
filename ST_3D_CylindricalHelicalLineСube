@@ -1,4 +1,4 @@
-DROP FUNCTION ST_3D_CylindricalHelicalLine(
+DROP FUNCTION ST_3D_CylindricalHelicalLineСube(
 geom GEOMETRY,
 distance float,
 direction_degrees_teta numeric,
@@ -11,7 +11,7 @@ second_denominator_exponentiation numeric,
 third_numerator_exponentiation numeric,
 third_denominator_exponentiation numeric)
 
-CREATE OR REPLACE FUNCTION ST_3D_CylindricalHelicalLine(
+CREATE OR REPLACE FUNCTION ST_3D_CylindricalHelicalLineСube(
 geom GEOMETRY,
 distance float,
 direction_degrees_teta numeric,
@@ -34,7 +34,7 @@ $BODY$
 LANGUAGE SQL
 
 Example
-SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_3D_CylindricalHelicalLine
+SELECT ST_ASText(ST_SetSrid(ST_MakeLine(ST_3D_CylindricalHelicalLineСube
 (geom, 0.1, i, 0.1, 0.00277777654321, 1, 1, 1, 1, 1, 1)),4326)) geom FROM (SELECT ST_MakePoint(0, 0, 0) geom, generate_series (0,360*10) i) foo;
 
 *Experimental function*

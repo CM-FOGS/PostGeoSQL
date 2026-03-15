@@ -2,7 +2,7 @@ An international research project that provides an extensible library of geospat
 
 Programming language - SQL.
 
-Instructions for installing, verifying the creation, operation and deletion of the function of PostgreSQL/PostGIS RDBMS and pgAdmin application.
+Instructions for installing, verifying the creation, operation and deletion of the function of PostgreSQL RDBMS, spatial extension PostGIS and pgAdmin application.
 
 1. The following software must be installed on the PC, laptop or JVM to work with the function library: PostgreSQL, PostGIS and pgAdmin.
 

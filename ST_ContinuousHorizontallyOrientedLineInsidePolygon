@@ -1,0 +1,38 @@
+DROP FUNCTION IF EXISTS ST_ContinuousHorizontallyOrientedLineInsidePolygon(
+    geom GEOMETRY,
+    ysize numeric)
+
+CREATE OR REPLACE FUNCTION ST_ContinuousHorizontallyOrientedLineInsidePolygon(
+    geom GEOMETRY,
+    ysize numeric)
+    RETURNS GEOMETRY AS
+$BODY$
+WITH
+tbla AS (SELECT ($1) geom),
+tblb AS (SELECT generate_series(FLOOR(ST_YMin(geom))::int, CEILING(ST_YMax(geom))::int, $2) y_value, ST_XMin(geom) x_min, ST_XMax(geom) x_max FROM tbla), 
+tblc AS (SELECT ROW_NUMBER() OVER () id, ST_SetSrid(ST_MakeLine(ST_MakePoint(x_min, y_value),ST_MakePoint(x_max, y_value)),4326) geom FROM tblb),
+tbld AS (SELECT id, geom, case id % 2 when 0 then 'even' else 'odd' end FROM tblc),
+tble1 AS (SELECT id, ST_Reverse(geom) geom FROM tbld WHERE tbld.case='even'),
+tble2 AS (SELECT id, ST_Reverse(geom) geom FROM tbld WHERE tbld.case='odd'),
+tblf AS (SELECT * FROM tble1 UNION ALL SELECT * FROM tble2 ORDER BY id),
+tblg1 AS (SELECT id, (ST_Intersection(a.geom, b.geom)) AS geom FROM tblf a JOIN tbla b ON ST_Intersects(a.geom, b.geom)),
+tblg2 AS (SELECT id, ST_Reverse(geom) geom FROM tblg1),
+tblh1 AS (SELECT b.id, ST_MakeLine(ST_StartPoint(a.geom), ST_StartPoint(b.geom)) geom FROM tblg1 a JOIN tblg1 b ON b.id = a.id + 1),
+tblh2 AS (SELECT b.id, ST_MakeLine(ST_StartPoint(a.geom), ST_StartPoint(b.geom)) geom FROM tblg2 a JOIN tblg2 b ON b.id = a.id + 1),
+tbli1 AS (SELECT id, geom, case id % 2 when 0 then 'even' else 'odd' end FROM tblh1),
+tbli2 AS (SELECT id, geom, case id % 2 when 0 then 'even' else 'odd' end FROM tblh2),
+tblj1 AS (SELECT id, geom FROM tbli1 WHERE tbli1.case='even'), 
+tblj2 AS (SELECT id, geom FROM tbli2 WHERE tbli2.case='odd')
+SELECT ST_Reverse(ST_LineMerge(ST_Collect(geom ORDER BY (ST_YMax(geom))))) geom FROM (SELECT geom FROM tblg1 UNION ALL SELECT geom FROM tblj1 UNION ALL SELECT geom FROM tblj2) foo;
+$BODY$
+LANGUAGE SQL
+
+Example:
+1) The route is plotted top-down and left-to-right -
+SELECT ST_ContinuousHorizontallyOrientedLineInsidePolygon(geom, 0.01) geom FROM polygon_4326;
+2) The route is plotted bottom-up and right-to-left -
+SELECT ST_Reverse(ST_ContinuousHorizontallyOrientedLineInsidePolygon(geom, 0.01)) geom FROM polygon_4326.
+
+*Explanation*
+This is experimental function for plotting routes for piloted and unmanned systems within a given polygonal object in the WGS 84 (World Geodetic System 1984) coordinate system.
+Grid spacing is set in whole numbers and fractions of a degree.

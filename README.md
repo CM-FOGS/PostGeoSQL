@@ -45,6 +45,7 @@ DROP FUNCTION IF EXISTS generate_identical_numbers_notnull_interval_ascending_or
     i integer)
 
 A brief description of how geo-functions work is generally published on the Q&A website at the following link - https://gis.stackexchange.com. 
+
 The authors and developers of the functions or functions body used in the project is:
 
 © Martin Davis https://github.com/dr-jts;
@@ -56,6 +57,7 @@ The authors and developers of the functions or functions body used in the projec
 © Michael W.Towes https://github.com/mwtoews.
 
 Links to published SQL/GeoSQL functions on the Q&A website:
+
 1) ST_VoronoiDiagramsFromPolygons - https://gis.stackexchange.com/a/318112/120129;
 2) ST_VoronoiDiagramsFromLines - https://gis.stackexchange.com/a/348154/120129;
 3) ST_TransectsOnStraightLine, ST_TransectsOnCurveLine - https://gis.stackexchange.com/a/473663/120129;
@@ -81,6 +83,6 @@ Links to published SQL/GeoSQL functions on the Q&A website:
 24) ST_BufferClusteringRequiredDistance - https://gis.stackexchange.com/a/312261/120129;
 26) ST_GeoAstroide - https://gis.stackexchange.com/a/492258/120129; https://stackoverflow.com/a/79878241/31874107;
 27) ST_DissolvePolygonsByNumericalValues - https://gis.stackexchange.com/a/495597/120129;
-
+28) ST_MultyRingsBuffersFromPoint, ST_RegularPolygon - https://stackoverflow.com/a/80004138/31874107;
 
 e-mail: geomaptechnology@gmail.com
